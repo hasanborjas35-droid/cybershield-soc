@@ -19,5 +19,7 @@ ENV ASPNETCORE_ENVIRONMENT=Production
 ENV DOTNET_GCConserveMemory=9
 ENV DOTNET_GCHeapHardLimit=402653184
 ENV COMPlus_GCConserveMemory=9
+ENV Database__Seed=false
+ENV Database__AutoMigrate=true
 EXPOSE 8080
 ENTRYPOINT ["dotnet", "CyberShield.Api.dll"]
