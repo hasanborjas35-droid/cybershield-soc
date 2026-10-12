@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><title>Network Monitoring | CyberShield SOC</title><meta name="description" content="CyberShield SOC — Network Monitoring. Real-time cybersecurity monitoring and threat intelligence."><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary-fixed-variant": "#004398", "tertiary-fixed": "#eaddff", "surface-container-lowest": "#0b0e16", "on-primary": "#002d6c", "on-tertiary": "#3f008e", "inverse-surface": "#e0e2ed", "surface-container": "#1c1f28", "tertiary": "#d2bbff", "on-tertiary-container": "#36007d", "surface-container-high": "#272a32", "tertiary-fixed-dim": "#d2bbff", "background": "#10131b", "on-tertiary-fixed": "#25005a", "on-surface": "#e0e2ed", "on-tertiary-fixed-variant": "#5a00c6", "on-secondary-fixed-variant": "#004e5d", "inverse-primary": "#0059c7", "secondary-container": "#00d9ff", "surface-container-highest": "#32353d", "on-secondary-fixed": "#001f26", "secondary-fixed": "#aeecff", "on-primary-container": "#00275f", "primary-fixed": "#d9e2ff", "surface-dim": "#10131b", "on-error": "#690005", "outline-variant": "#414755", "on-secondary-container": "#005b6c", "tertiary-container": "#a476ff", "on-error-container": "#ffdad6", "inverse-on-surface": "#2d3039", "surface-container-low": "#181b23", "surface-tint": "#afc6ff", "on-surface-variant": "#c1c6d7", "on-background": "#e0e2ed", "outline": "#8b90a0", "surface-variant": "#32353d", "primary-fixed-dim": "#afc6ff", "error-container": "#93000a", "error": "#ffb4ab", "primary": "#afc6ff", "primary-container": "#528dff", "on-secondary": "#003641", "on-primary-fixed": "#001a43", "surface": "#10131b", "secondary-fixed-dim": "#00d9ff", "secondary": "#aeecff", "surface-bright": "#363942" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-xs": "0.25rem", "margin": "1.5rem", "space-2xl": "3rem", "space-md": "1rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "space-xl": "2rem", "gutter": "1rem" }, "fontFamily": { "headline-md": ["Space Grotesk"], "label-lg": ["Space Grotesk"], "body-sm": ["Inter"], "headline-lg": ["Space Grotesk"], "headline-xl": ["Space Grotesk"], "body-lg": ["Inter"], "headline-sm": ["Space Grotesk"], "body-md": ["Inter"], "code-mono": ["Space Grotesk"], "label-md": ["Space Grotesk"] }, "fontSize": { "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "500" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "code-mono": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }] } } } }</script><style id="cs-responsive">
+.cs-burger{display:none}
+@media (max-width:1023px){
+ aside.fixed.left-0{transform:translateX(-100%);transition:transform .25s ease;width:18rem}
+ body.cs-nav-open aside.fixed.left-0{transform:translateX(0)}
+ .pl-72{padding-left:0!important}
+ header.fixed.left-72{left:0!important;padding-left:4rem!important;padding-right:1rem!important}
+ .cs-burger{display:flex;position:fixed;top:.75rem;left:.75rem;z-index:60;width:2.5rem;height:2.5rem;align-items:center;justify-content:center;border-radius:.75rem;background:rgba(11,14,22,.9);border:1px solid rgba(0,217,255,.25);color:#e0e2ed;cursor:pointer}
+ .cs-scrim{position:fixed;inset:0;background:rgba(5,7,13,.6);z-index:45;display:none}
+ body.cs-nav-open .cs-scrim{display:block}
+ body.cs-nav-open .cs-burger{left:18.75rem}
+ header.fixed .w-96{width:100%!important}
+ main{padding:1rem!important}
+ table{display:block;overflow-x:auto;white-space:nowrap}
+}
+@media (max-width:640px){ header.fixed [class*="border-l"]{padding-left:.5rem!important} }
+</style></head><body class="bg-surface font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest/80 backdrop-blur-xl z-50 flex flex-col py-6 shadow-[0_0_20px_rgba(22,119,255,0.05)]"><div class="px-6 mb-8 flex items-center gap-3"><img alt="CyberShield Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Wecbnkqc8L1mZDLKv3OPQlZAmAa1rVSwrZTCRMmLzKmBGqxqcIDa6KKVuWl7lM7N_plRgAn8veaFzPOi9II4ubOW_mm-b1x7ll0ZNSxF0avhmxYTBoFwmcQ6XEITDHuU0yapBt-4T4B7oVai1S6Qti8U3BZ3gmIGtlTrgbdrX8NAohYX1x94HIHHLqgJCWZxzpG0HBAgPz81hZTMJV-3M1yyryPhXpeYExOtOS-0Cr"/><span class="font-headline-md text-headline-sm tracking-tight text-primary">CyberShield</span></div><nav class="flex-1 px-4 space-y-space-xs overflow-y-auto" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_0_15px_rgba(82,141,255,0.3)]"><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="dashboard" href="index.html"><span class="material-symbols-outlined mr-3">dashboard</span>Dashboard</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="threats" href="threats.html"><span class="material-symbols-outlined mr-3">crisis_alert</span>Threats</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="alerts" href="alerts.html"><span class="material-symbols-outlined mr-3">notifications_active</span>Alerts</a><a aria-current="page" class="flex items-center px-4 py-3 rounded-xl transition-all bg-primary-container text-on-primary-container font-semibold shadow-[0_0_15px_rgba(82,141,255,0.3)]" data-path="network" href="network.html"><span class="material-symbols-outlined mr-3">hub</span>Network</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="devices" href="devices.html"><span class="material-symbols-outlined mr-3">dns</span>Devices</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="incidents" href="incidents.html"><span class="material-symbols-outlined mr-3">report</span>Incidents</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="reports" href="reports.html"><span class="material-symbols-outlined mr-3">analytics</span>Reports</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="users" href="users.html"><span class="material-symbols-outlined mr-3">group</span>Users</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="settings" href="settings.html"><span class="material-symbols-outlined mr-3">settings</span>Settings</a></nav><div class="px-6 pt-4 border-t border-outline-variant/20 mt-auto"><div class="flex items-center gap-3 p-3 rounded-xl bg-surface-container/50 border border-secondary/20"><div class="w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_8px_rgba(0,217,255,0.8)] animate-pulse"><div></div></div><div class="flex flex-col"><span class="text-label-md text-on-surface font-semibold">SYSTEM OPERATIONAL</span><span class="text-body-sm text-on-surface-variant">All nodes reporting 99.9%</span></div></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/80 backdrop-blur-xl z-40 flex items-center justify-between px-8"><div class="flex items-center gap-4 w-96"><div class="relative w-full"><span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-sm">search</span><input class="w-full bg-surface-container-lowest text-on-surface pl-10 pr-4 py-2 rounded-xl text-body-md border border-outline-variant/30 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary" placeholder="Search telemetry, hashes, IPs..." type="text"/></div></div><div class="flex items-center gap-6"><div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container border border-secondary/30 shadow-[0_0_10px_rgba(0,217,255,0.1)]"><span class="material-symbols-outlined text-secondary text-sm">shield</span><span class="text-label-md text-secondary font-semibold">SECURE STATE</span></div><button class="relative text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined">notifications</span><span class="absolute top-0 right-0 w-2 h-2 rounded-full bg-error"></span></button><div class="flex items-center gap-3 pl-4 border-l border-outline-variant/30"><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-secondary/50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAio-YJa7LbB5tjKAFFWdqAcXIhl_AofPC0pEsMPpzK7C9xJOipKHmZKTSgPUQaK8h9QiGrGvgf7fTukk1Cc9e7MFfFPul34pGSwYaXk3pMdW0pgXM3zcg9O0_rqPtzz-nqZ5Q8sy_xSF-dNhYkTuIS6Zch6a03SE2VPZXOEdrH_XyT4nPCP7Q6eQnM06L7bFoxSpue8M69qMfqFgn6t1nrlk7pzx_Ij7se9-DftU"/></div></div></header><main class="relative pt-16 bg-surface min-h-screen p-space-lg"><div class="flex flex-col w-full space-y-space-lg">
+<!-- Top Metrics Bar -->
+<!-- Agent Status + Last Updated -->
+<div class="flex items-center justify-between mb-4">
+<div id="net-agent-status"></div>
+<div class="flex items-center gap-3">
+<span class="text-body-sm text-on-surface-variant" id="net-last-updated"></span>
+<span id="net-fw-chip" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-label-md border bg-surface-container text-on-surface-variant border-outline-variant/20">Firewall</span>
+<span id="net-def-chip" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-label-md border bg-surface-container text-on-surface-variant border-outline-variant/20">Defender</span>
+<button id="net-refresh-btn" class="p-2 rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface-variant transition-all" title="Refresh">
+<span class="material-symbols-outlined text-sm">refresh</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+<!-- Metric 1 -->
+<div class="bg-surface-container/70 backdrop-blur-xl p-space-md rounded-xl flex flex-col justify-between shadow-[0_0_20px_rgba(0,217,255,0.05)] hover:shadow-[0_0_25px_rgba(0,217,255,0.15)] transition-all">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="text-label-md text-on-surface-variant font-headline-md tracking-wider">INCOMING TRAFFIC</span>
+<span class="material-symbols-outlined text-secondary text-lg">download</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-headline-lg font-headline-lg text-on-surface" id="net-incoming-val">148.4</span>
+<span class="text-body-sm text-secondary font-code-mono" id="net-incoming-unit">Gbps</span>
+</div>
+<div class="flex items-center gap-1.5 mt-space-sm text-body-sm text-secondary">
+<span class="material-symbols-outlined text-sm">trending_up</span>
+<span>+12.4% from last hour</span>
+</div>
+</div>
+<!-- Metric 2 -->
+<div class="bg-surface-container/70 backdrop-blur-xl p-space-md rounded-xl flex flex-col justify-between shadow-[0_0_20px_rgba(0,217,255,0.05)] hover:shadow-[0_0_25px_rgba(0,217,255,0.15)] transition-all">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="text-label-md text-on-surface-variant font-headline-md tracking-wider">OUTGOING TRAFFIC</span>
+<span class="material-symbols-outlined text-primary text-lg">upload</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-headline-lg font-headline-lg text-on-surface" id="net-outgoing-val">62.1</span>
+<span class="text-body-sm text-primary font-code-mono" id="net-outgoing-unit">Gbps</span>
+</div>
+<div class="flex items-center gap-1.5 mt-space-sm text-body-sm text-on-surface-variant">
+<span class="material-symbols-outlined text-sm">trending_flat</span>
+<span>Stable baseline</span>
+</div>
+</div>
+<!-- Metric 3 -->
+<div class="bg-surface-container/70 backdrop-blur-xl p-space-md rounded-xl flex flex-col justify-between shadow-[0_0_20px_rgba(255,180,171,0.05)] hover:shadow-[0_0_25px_rgba(255,180,171,0.15)] transition-all">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="text-label-md text-on-surface-variant font-headline-md tracking-wider">BLOCKED REQUESTS</span>
+<span class="material-symbols-outlined text-error text-lg" style="font-variation-settings: 'FILL' 1;">block</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-headline-lg font-headline-lg text-error" id="net-failed-logons">0</span>
+<span class="text-body-sm text-error font-code-mono">/min</span>
+</div>
+<div class="flex items-center gap-1.5 mt-space-sm text-body-sm text-error">
+<span class="material-symbols-outlined text-sm">warning</span>
+<span>DDoS mitigation active</span>
+</div>
+</div>
+<!-- Metric 4 -->
+<div class="bg-surface-container/70 backdrop-blur-xl p-space-md rounded-xl flex flex-col justify-between shadow-[0_0_20px_rgba(0,217,255,0.05)] hover:shadow-[0_0_25px_rgba(0,217,255,0.15)] transition-all">
+<div class="flex items-center justify-between mb-space-sm">
+<span class="text-label-md text-on-surface-variant font-headline-md tracking-wider">ACTIVE CONNECTIONS</span>
+<span class="material-symbols-outlined text-secondary text-lg">hub</span>
+</div>
+<div class="flex items-baseline gap-2">
+<span class="text-headline-lg font-headline-lg text-on-surface" id="net-active-connections">84.2K</span>
+<span class="text-body-sm text-secondary font-code-mono">SESSIONS</span>
+</div>
+<div class="flex items-center gap-1.5 mt-space-sm text-body-sm text-secondary">
+<span class="material-symbols-outlined text-sm">pulse_alert</span>
+<span>99.98% healthy state</span>
+</div>
+</div>
+</div>
+<!-- Main Grid: Charts & Rule Toggles -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Bandwidth Timeline Chart (2 Cols) -->
+<div class="lg:col-span-2 bg-surface-container/70 backdrop-blur-xl p-space-lg rounded-xl flex flex-col justify-between shadow-[0_0_20px_rgba(0,217,255,0.05)]">
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Bandwidth Usage Timeline</h3>
+<p class="text-body-sm text-on-surface-variant">Real-time throughput metrics across core perimeter gateways</p>
+</div>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-high text-secondary text-label-md font-headline-md">1H</button>
+<button class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high text-label-md font-headline-md">24H</button>
+<button class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:bg-surface-container-high text-label-md font-headline-md">7D</button>
+</div>
+</div>
+<!-- SVG Chart Mock -->
+<div class="relative w-full h-64 flex items-end pt-8">
+<div class="absolute inset-0 flex flex-col justify-between pointer-events-none opacity-20">
+<div class="w-full h-px bg-outline"></div>
+<div class="w-full h-px bg-outline"></div>
+<div class="w-full h-px bg-outline"></div>
+<div class="w-full h-px bg-outline"></div>
+</div>
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 800 200">
+<defs>
+<lineargradient id="chartGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#00d9ff" stop-opacity="0.4"></stop>
+<stop offset="100%" stop-color="#00d9ff" stop-opacity="0.0"></stop>
+</lineargradient>
+<lineargradient id="lineGrad" x1="0" x2="1" y1="0" y2="0">
+<stop offset="0%" stop-color="#afc6ff"></stop>
+<stop offset="100%" stop-color="#00d9ff"></stop>
+</lineargradient>
+</defs>
+<path d="M0,150 Q100,100 200,130 T400,60 T600,90 T800,40 L800,200 L0,200 Z" fill="url(#chartGrad)"></path>
+<path d="M0,150 Q100,100 200,130 T400,60 T600,90 T800,40" fill="none" stroke="url(#lineGrad)" stroke-width="3"></path>
+</svg>
+</div>
+<div class="flex items-center justify-between mt-space-md text-code-mono text-on-surface-variant">
+<span>12:00:00</span>
+<span>12:15:00</span>
+<span>12:30:00</span>
+<span>12:45:00</span>
+<span class="text-secondary">NOW (13:00)</span>
+</div>
+</div>
+<!-- Firewall Rule Status Toggles -->
+<div class="bg-surface-container/70 backdrop-blur-xl p-space-lg rounded-xl flex flex-col justify-between shadow-[0_0_20px_rgba(0,217,255,0.05)]">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<h3 class="text-headline-md font-headline-md text-on-surface">Firewall Rules</h3>
+<span class="material-symbols-outlined text-secondary">security</span>
+</div>
+<p class="text-body-sm text-on-surface-variant mb-space-md">Instantaneous policy enforcement toggles for edge gateways.</p>
+<div class="space-y-space-md">
+<!-- Toggle Item 1 -->
+<div class="flex items-center justify-between p-space-sm rounded-xl bg-surface-container-low" data-rule="Drop Known Botnets">
+<div class="flex flex-col">
+<span class="text-body-md font-semibold text-on-surface">Drop Known Botnets</span>
+<span class="text-body-sm text-secondary font-code-mono">RULE #FW-1092</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer fw-toggle" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<!-- Toggle Item 2 -->
+<div class="flex items-center justify-between p-space-sm rounded-xl bg-surface-container-low" data-rule="GEO-Lock High Risk">
+<div class="flex flex-col">
+<span class="text-body-md font-semibold text-on-surface">GEO-Lock High Risk</span>
+<span class="text-body-sm text-secondary font-code-mono">RULE #FW-4021</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer fw-toggle" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<!-- Toggle Item 3 -->
+<div class="flex items-center justify-between p-space-sm rounded-xl bg-surface-container-low" data-rule="Deep Packet Inspection">
+<div class="flex flex-col">
+<span class="text-body-md font-semibold text-on-surface">Deep Packet Inspection</span>
+<span class="text-body-sm text-secondary font-code-mono">RULE #DPI-889</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer fw-toggle" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+<!-- Toggle Item 4 -->
+<div class="flex items-center justify-between p-space-sm rounded-xl bg-surface-container-low" data-rule="Rate Limit ICMP">
+<div class="flex flex-col">
+<span class="text-body-md font-semibold text-on-surface">Rate Limit ICMP</span>
+<span class="text-body-sm text-on-surface-variant font-code-mono">RULE #FW-012</span>
+</div>
+<label class="relative inline-flex items-center cursor-pointer">
+<input class="sr-only peer fw-toggle" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+</div>
+</div>
+<div class="mt-space-md pt-space-sm border-t border-outline-variant/10 flex justify-between items-center text-body-sm text-secondary">
+<span>Active Rules: 14/16</span>
+<button id="net-manage-btn" class="text-secondary hover:underline font-semibold">Manage Policies →</button>
+</div>
+</div>
+</div>
+<!-- Suspicious Protocols & Packet Inspection Logs -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Suspicious Protocol Indicators -->
+<div class="bg-surface-container/70 backdrop-blur-xl p-space-lg rounded-xl flex flex-col justify-between shadow-[0_0_20px_rgba(0,217,255,0.05)]">
+<div>
+<div class="flex items-center justify-between mb-space-md">
+<h3 class="text-headline-md font-headline-md text-on-surface">Suspicious Protocols</h3>
+<span class="material-symbols-outlined text-error">crisis_alert</span>
+</div>
+<p class="text-body-sm text-on-surface-variant mb-space-md">Anomalous protocol signatures flagged by AI heuristic engines.</p>
+<div class="space-y-space-md">
+<!-- Protocol 1 -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-code-mono text-body-md text-error font-bold">TUNNEL/SSH-OVER-DNS</span>
+<span class="px-2 py-0.5 rounded-full text-body-sm bg-error/20 text-error font-semibold">HIGH</span>
+</div>
+<div class="flex justify-between text-body-sm text-on-surface-variant">
+<span>Port 53 (UDP)</span>
+<span>18.4 MB payload</span>
+</div>
+</div>
+<!-- Protocol 2 -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-code-mono text-body-md text-primary font-bold">OBFUSCATED TLS 1.3</span>
+<span class="px-2 py-0.5 rounded-full text-body-sm bg-primary/20 text-primary font-semibold">MED</span>
+</div>
+<div class="flex justify-between text-body-sm text-on-surface-variant">
+<span>Port 443 (TCP)</span>
+<span>4.2 GB payload</span>
+</div>
+</div>
+<!-- Protocol 3 -->
+<div class="p-space-sm rounded-xl bg-surface-container-low flex flex-col gap-1">
+<div class="flex items-center justify-between">
+<span class="font-code-mono text-body-md text-tertiary font-bold">NON-STANDARD RPC</span>
+<span class="px-2 py-0.5 rounded-full text-body-sm bg-tertiary/20 text-tertiary font-semibold">LOW</span>
+</div>
+<div class="flex justify-between text-body-sm text-on-surface-variant">
+<span>Port 135 (TCP)</span>
+<span>120 KB payload</span>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-space-lg">
+<button class="w-full py-2.5 rounded-xl bg-surface-container-high text-on-surface text-label-md font-headline-md hover:bg-surface-container-highest transition-all">
+          Deep Signature Analysis
+        </button>
+</div>
+</div>
+<!-- Packet Inspection Logs (High-Density Table) (2 Cols) -->
+<div class="lg:col-span-2 bg-surface-container/70 backdrop-blur-xl p-space-lg rounded-xl flex flex-col justify-between shadow-[0_0_20px_rgba(0,217,255,0.05)]">
+<div class="flex items-center justify-between mb-space-md">
+<div>
+<h3 class="text-headline-md font-headline-md text-on-surface">Packet Inspection Stream</h3>
+<p class="text-body-sm text-on-surface-variant">Real-time deep telemetry capture and packet header inspection</p>
+</div>
+<div class="flex items-center gap-2">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-secondary/10 text-secondary text-label-md">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+            LIVE FEED
+          </span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-label-md text-on-surface-variant border-b border-outline-variant/20">
+<th class="py-3 px-2 font-headline-md">TIMESTAMP</th>
+<th class="py-3 px-2 font-headline-md">SOURCE IP</th>
+<th class="py-3 px-2 font-headline-md">DESTINATION</th>
+<th class="py-3 px-2 font-headline-md">PROTO</th>
+<th class="py-3 px-2 font-headline-md">ACTION</th>
+<th class="py-3 px-2 font-headline-md text-right">SIZE</th>
+</tr>
+</thead>
+<tbody class="text-code-mono text-body-sm divide-y divide-outline-variant/10">
+<tr class="hover:bg-surface-container-high/50 transition-colors">
+<td class="py-3 px-2 text-on-surface-variant">13:00:14.281</td>
+<td class="py-3 px-2 text-secondary">192.168.1.104</td>
+<td class="py-3 px-2 text-on-surface">10.0.4.88:443</td>
+<td class="py-3 px-2 text-on-surface-variant">HTTPS</td>
+<td class="py-3 px-2"><span class="px-2 py-0.5 rounded text-xs bg-secondary/20 text-secondary">ALLOW</span></td>
+<td class="py-3 px-2 text-right text-on-surface-variant">1.4 KB</td>
+</tr>
+<tr class="hover:bg-surface-container-high/50 transition-colors">
+<td class="py-3 px-2 text-on-surface-variant">13:00:14.102</td>
+<td class="py-3 px-2 text-error">45.33.22.11</td>
+<td class="py-3 px-2 text-on-surface">10.0.1.15:22</td>
+<td class="py-3 px-2 text-on-surface-variant">SSH</td>
+<td class="py-3 px-2"><span class="px-2 py-0.5 rounded text-xs bg-error/20 text-error">BLOCK</span></td>
+<td class="py-3 px-2 text-right text-on-surface-variant">512 B</td>
+</tr>
+<tr class="hover:bg-surface-container-high/50 transition-colors">
+<td class="py-3 px-2 text-on-surface-variant">13:00:13.984</td>
+<td class="py-3 px-2 text-secondary">192.168.2.45</td>
+<td class="py-3 px-2 text-on-surface">8.8.8.8:53</td>
+<td class="py-3 px-2 text-on-surface-variant">DNS</td>
+<td class="py-3 px-2"><span class="px-2 py-0.5 rounded text-xs bg-secondary/20 text-secondary">ALLOW</span></td>
+<td class="py-3 px-2 text-right text-on-surface-variant">98 B</td>
+</tr>
+<tr class="hover:bg-surface-container-high/50 transition-colors">
+<td class="py-3 px-2 text-on-surface-variant">13:00:13.650</td>
+<td class="py-3 px-2 text-error">185.220.101.5</td>
+<td class="py-3 px-2 text-on-surface">10.0.2.99:80</td>
+<td class="py-3 px-2 text-on-surface-variant">HTTP</td>
+<td class="py-3 px-2"><span class="px-2 py-0.5 rounded text-xs bg-error/20 text-error">DROP</span></td>
+<td class="py-3 px-2 text-right text-on-surface-variant">1.2 KB</td>
+</tr>
+<tr class="hover:bg-surface-container-high/50 transition-colors">
+<td class="py-3 px-2 text-on-surface-variant">13:00:13.411</td>
+<td class="py-3 px-2 text-secondary">192.168.1.12</td>
+<td class="py-3 px-2 text-on-surface">10.0.3.14:3389</td>
+<td class="py-3 px-2 text-on-surface-variant">RDP</td>
+<td class="py-3 px-2"><span class="px-2 py-0.5 rounded text-xs bg-secondary/20 text-secondary">ALLOW</span></td>
+<td class="py-3 px-2 text-right text-on-surface-variant">4.8 KB</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="flex items-center justify-between mt-space-md pt-space-sm border-t border-outline-variant/10 text-body-sm text-on-surface-variant">
+<span>Showing 5 of 14,092 packets logged this minute</span>
+<div class="flex items-center gap-2">
+<button id="net-export-btn" class="px-3 py-1 rounded bg-surface-container-high hover:text-on-surface">Export PCAP</button>
+<button id="net-filter-btn" class="px-3 py-1 rounded bg-primary text-on-primary font-semibold">Filter Stream</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Live Network Interfaces Table -->
+<div class="mt-8 bg-surface-container/70 backdrop-blur-xl rounded-xl shadow-sm overflow-hidden">
+<div class="flex items-center justify-between p-space-lg border-b border-outline-variant/10">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">device_hub</span>
+<h3 class="text-headline-md font-headline-md text-on-surface">Network Interfaces</h3>
+<span class="px-2.5 py-0.5 rounded-full bg-secondary/10 text-secondary border border-secondary/20 text-label-md" id="net-total-interfaces">—</span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full">
+<thead>
+<tr class="border-b border-outline-variant/10 text-label-md text-on-surface-variant uppercase tracking-wider">
+<th class="text-left py-3 px-4">Interface</th>
+<th class="text-left py-3 px-4">Status</th>
+<th class="text-left py-3 px-4">IP Address</th>
+<th class="text-left py-3 px-4">DNS</th>
+<th class="text-left py-3 px-4">Speed</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10" id="net-interfaces-tbody">
+<tr><td colspan="5" class="py-8 text-center text-on-surface-variant">
+<span class="material-symbols-outlined animate-spin block mx-auto mb-2">refresh</span>
+Loading interface data...
+</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- Security Events Feed -->
+<div class="mt-6 grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="bg-surface-container/70 backdrop-blur-xl p-space-lg rounded-xl shadow-sm">
+<h3 class="text-headline-md font-headline-md text-on-surface mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-error">security</span>
+Security Events (24h)
+</h3>
+<div class="flex flex-col gap-3" id="net-events-feed">
+<p class="text-body-sm text-on-surface-variant py-4 text-center">Loading...</p>
+</div>
+</div>
+<div class="lg:col-span-2 bg-surface-container/70 backdrop-blur-xl p-space-lg rounded-xl shadow-sm flex items-center justify-center">
+<div class="text-center text-on-surface-variant">
+<span class="material-symbols-outlined text-4xl opacity-30 mb-3 block">wifi_tethering</span>
+<p class="text-body-md font-semibold">Deep Packet Inspection</p>
+<p class="text-body-sm mt-1 opacity-60">Full packet capture requires Wireshark or a dedicated network sensor.</p>
+</div>
+</div>
+</div>
+
+</div></main></div><script src="cs-api.js"></script><script src="cs-network.js"></script><script id="cs-nav">
+(function(){
+ var b=document.body;
+ var btn=document.createElement('button');btn.className='cs-burger';btn.setAttribute('aria-label','Toggle navigation');
+ btn.innerHTML='<span class="material-symbols-outlined">menu</span>';
+ var sc=document.createElement('div');sc.className='cs-scrim';
+ b.appendChild(btn);b.appendChild(sc);
+ btn.onclick=function(){var o=b.classList.toggle('cs-nav-open');btn.firstChild.textContent=o?'close':'menu'};sc.onclick=function(){b.classList.remove('cs-nav-open');btn.firstChild.textContent='menu'};
+ document.addEventListener('keydown',function(e){if(e.key==='Escape')b.classList.remove('cs-nav-open')});
+ document.querySelectorAll('aside img').forEach(function(i){var f=function(){
+  var s=document.createElement('span');s.className='material-symbols-outlined text-secondary-container';s.style.fontVariationSettings="'FILL' 1";s.textContent='shield';i.replaceWith(s)};
+  i.addEventListener('error',f);if(i.complete&&i.naturalWidth===0)f();});
+})();
+</script></body></html>

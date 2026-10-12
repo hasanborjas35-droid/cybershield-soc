@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><title>User Management | CyberShield SOC</title><meta name="description" content="CyberShield SOC — User Management. Real-time cybersecurity monitoring and threat intelligence."><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary-fixed-variant": "#004398", "tertiary-fixed": "#eaddff", "surface-container-lowest": "#0b0e16", "on-primary": "#002d6c", "on-tertiary": "#3f008e", "inverse-surface": "#e0e2ed", "surface-container": "#1c1f28", "tertiary": "#d2bbff", "on-tertiary-container": "#36007d", "surface-container-high": "#272a32", "tertiary-fixed-dim": "#d2bbff", "background": "#10131b", "on-tertiary-fixed": "#25005a", "on-surface": "#e0e2ed", "on-tertiary-fixed-variant": "#5a00c6", "on-secondary-fixed-variant": "#004e5d", "inverse-primary": "#0059c7", "secondary-container": "#00d9ff", "surface-container-highest": "#32353d", "on-secondary-fixed": "#001f26", "secondary-fixed": "#aeecff", "on-primary-container": "#00275f", "primary-fixed": "#d9e2ff", "surface-dim": "#10131b", "on-error": "#690005", "outline-variant": "#414755", "on-secondary-container": "#005b6c", "tertiary-container": "#a476ff", "on-error-container": "#ffdad6", "inverse-on-surface": "#2d3039", "surface-container-low": "#181b23", "surface-tint": "#afc6ff", "on-surface-variant": "#c1c6d7", "on-background": "#e0e2ed", "outline": "#8b90a0", "surface-variant": "#32353d", "primary-fixed-dim": "#afc6ff", "error-container": "#93000a", "error": "#ffb4ab", "primary": "#afc6ff", "primary-container": "#528dff", "on-secondary": "#003641", "on-primary-fixed": "#001a43", "surface": "#10131b", "secondary-fixed-dim": "#00d9ff", "secondary": "#aeecff", "surface-bright": "#363942" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-xs": "0.25rem", "margin": "1.5rem", "space-2xl": "3rem", "space-md": "1rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "space-xl": "2rem", "gutter": "1rem" }, "fontFamily": { "headline-md": ["Space Grotesk"], "label-lg": ["Space Grotesk"], "body-sm": ["Inter"], "headline-lg": ["Space Grotesk"], "headline-xl": ["Space Grotesk"], "body-lg": ["Inter"], "headline-sm": ["Space Grotesk"], "body-md": ["Inter"], "code-mono": ["Space Grotesk"], "label-md": ["Space Grotesk"] }, "fontSize": { "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "500" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "code-mono": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }] } } } }</script><style id="cs-responsive">
+.cs-burger{display:none}
+@media (max-width:1023px){
+ aside.fixed.left-0{transform:translateX(-100%);transition:transform .25s ease;width:18rem}
+ body.cs-nav-open aside.fixed.left-0{transform:translateX(0)}
+ .pl-72{padding-left:0!important}
+ header.fixed.left-72{left:0!important;padding-left:4rem!important;padding-right:1rem!important}
+ .cs-burger{display:flex;position:fixed;top:.75rem;left:.75rem;z-index:60;width:2.5rem;height:2.5rem;align-items:center;justify-content:center;border-radius:.75rem;background:rgba(11,14,22,.9);border:1px solid rgba(0,217,255,.25);color:#e0e2ed;cursor:pointer}
+ .cs-scrim{position:fixed;inset:0;background:rgba(5,7,13,.6);z-index:45;display:none}
+ body.cs-nav-open .cs-scrim{display:block}
+ body.cs-nav-open .cs-burger{left:18.75rem}
+ header.fixed .w-96{width:100%!important}
+ main{padding:1rem!important}
+ table{display:block;overflow-x:auto;white-space:nowrap}
+}
+@media (max-width:640px){ header.fixed [class*="border-l"]{padding-left:.5rem!important} }
+</style></head><body class="bg-surface font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest/80 backdrop-blur-xl z-50 flex flex-col py-6 shadow-[0_0_20px_rgba(22,119,255,0.05)]"><div class="px-6 mb-8 flex items-center gap-3"><img alt="CyberShield Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Wecbnkqc8L1mZDLKv3OPQlZAmAa1rVSwrZTCRMmLzKmBGqxqcIDa6KKVuWl7lM7N_plRgAn8veaFzPOi9II4ubOW_mm-b1x7ll0ZNSxF0avhmxYTBoFwmcQ6XEITDHuU0yapBt-4T4B7oVai1S6Qti8U3BZ3gmIGtlTrgbdrX8NAohYX1x94HIHHLqgJCWZxzpG0HBAgPz81hZTMJV-3M1yyryPhXpeYExOtOS-0Cr"/><span class="font-headline-md text-headline-sm tracking-tight text-primary">CyberShield</span></div><nav class="flex-1 px-4 space-y-space-xs overflow-y-auto" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_0_15px_rgba(82,141,255,0.3)]"><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="dashboard" href="index.html"><span class="material-symbols-outlined mr-3">dashboard</span>Dashboard</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="threats" href="threats.html"><span class="material-symbols-outlined mr-3">crisis_alert</span>Threats</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="alerts" href="alerts.html"><span class="material-symbols-outlined mr-3">notifications_active</span>Alerts</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="network" href="network.html"><span class="material-symbols-outlined mr-3">hub</span>Network</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="devices" href="devices.html"><span class="material-symbols-outlined mr-3">dns</span>Devices</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="incidents" href="incidents.html"><span class="material-symbols-outlined mr-3">report</span>Incidents</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="reports" href="reports.html"><span class="material-symbols-outlined mr-3">analytics</span>Reports</a><a aria-current="page" class="flex items-center px-4 py-3 rounded-xl transition-all bg-primary-container text-on-primary-container font-semibold shadow-[0_0_15px_rgba(82,141,255,0.3)]" data-path="users" href="users.html"><span class="material-symbols-outlined mr-3">group</span>Users</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="settings" href="settings.html"><span class="material-symbols-outlined mr-3">settings</span>Settings</a></nav><div class="px-6 pt-4 border-t border-outline-variant/20 mt-auto"><div class="flex items-center gap-3 p-3 rounded-xl bg-surface-container/50 border border-secondary/20"><div class="w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_8px_rgba(0,217,255,0.8)] animate-pulse"><div></div></div><div class="flex flex-col"><span class="text-label-md text-on-surface font-semibold">SYSTEM OPERATIONAL</span><span class="text-body-sm text-on-surface-variant">All nodes reporting 99.9%</span></div></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/80 backdrop-blur-xl z-40 flex items-center justify-between px-8"><div class="flex items-center gap-4 w-96"><div class="relative w-full"><span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-sm">search</span><input class="w-full bg-surface-container-lowest text-on-surface pl-10 pr-4 py-2 rounded-xl text-body-md border border-outline-variant/30 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary" placeholder="Search telemetry, hashes, IPs..." type="text"/></div></div><div class="flex items-center gap-6"><div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container border border-secondary/30 shadow-[0_0_10px_rgba(0,217,255,0.1)]"><span class="material-symbols-outlined text-secondary text-sm">shield</span><span class="text-label-md text-secondary font-semibold">SECURE STATE</span></div><button class="relative text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined">notifications</span><span class="absolute top-0 right-0 w-2 h-2 rounded-full bg-error"></span></button><div class="flex items-center gap-3 pl-4 border-l border-outline-variant/30"><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-secondary/50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAio-YJa7LbB5tjKAFFWdqAcXIhl_AofPC0pEsMPpzK7C9xJOipKHmZKTSgPUQaK8h9QiGrGvgf7fTukk1Cc9e7MFfFPul34pGSwYaXk3pMdW0pgXM3zcg9O0_rqPtzz-nqZ5Q8sy_xSF-dNhYkTuIS6Zch6a03SE2VPZXOEdrH_XyT4nPCP7Q6eQnM06L7bFoxSpue8M69qMfqFgn6t1nrlk7pzx_Ij7se9-DftU"/></div></div></header><main class="relative pt-16 bg-surface min-h-screen p-space-lg"><div class="flex flex-col w-full space-y-space-xl pb-16">
+<!-- Top Action & Stats Bar -->
+<div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 bg-surface-container/60 backdrop-blur-xl p-8 rounded-2xl shadow-[0_0_20px_rgba(22,119,255,0.05)]">
+<div class="flex flex-col gap-2">
+<div class="flex items-center gap-2">
+<span class="text-label-md text-secondary uppercase tracking-widest">Access Control Matrix</span>
+<span class="text-outline">/</span>
+<span class="text-label-md text-on-surface-variant font-code-mono">IAM-AUTH-v4.8</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface">User Management</h1>
+<p class="text-body-md text-on-surface-variant max-w-2xl">
+        Provision enterprise SOC personnel, configure role-based access control (RBAC), and enforce multi-factor authentication mandates across all operational nodes.
+      </p>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 px-5 py-3 rounded-xl bg-primary text-on-primary font-label-lg hover:bg-primary-container transition-all shadow-[0_0_15px_rgba(175,198,255,0.2)]" onclick="openModal()">
+<span class="material-symbols-outlined text-sm">person_add</span>
+        Provision User
+      </button>
+<button class="flex items-center gap-2 px-5 py-3 rounded-xl bg-surface-container-high text-on-surface font-label-lg hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined text-sm">security_update</span>
+        Security Policies
+      </button>
+</div>
+</div>
+<!-- Metric Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<div class="bg-surface-container/40 backdrop-blur-md p-6 rounded-2xl flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant mb-4">
+<span class="text-label-md font-semibold tracking-wide">TOTAL IDENTITIES</span>
+<span class="material-symbols-outlined text-primary">group</span>
+</div>
+<div class="flex items-baseline gap-3">
+<span class="font-headline-xl text-headline-xl text-on-surface" id="cs-total-users">1,284</span>
+<span class="text-body-sm text-secondary flex items-center"><span class="material-symbols-outlined text-xs mr-0.5">trending_up</span>+12%</span>
+</div>
+<span class="text-body-sm text-on-surface-variant mt-2">Active AD &amp; Local sync</span>
+</div>
+<div class="bg-surface-container/40 backdrop-blur-md p-6 rounded-2xl flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant mb-4">
+<span class="text-label-md font-semibold tracking-wide">ADMINISTRATORS</span>
+<span class="material-symbols-outlined text-secondary">admin_panel_settings</span>
+</div>
+<div class="flex items-baseline gap-3">
+<span class="font-headline-xl text-headline-xl text-on-surface" id="cs-admin-count">18</span>
+<span class="text-body-sm text-on-surface-variant">Strict MFA enforced</span>
+</div>
+<span class="text-body-sm text-secondary mt-2">100% Hardware Key compliance</span>
+</div>
+<div class="bg-surface-container/40 backdrop-blur-md p-6 rounded-2xl flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant mb-4">
+<span class="text-label-md font-semibold tracking-wide">ACTIVE ANALYSTS</span>
+<span class="material-symbols-outlined text-primary-container">shield_person</span>
+</div>
+<div class="flex items-baseline gap-3">
+<span class="font-headline-xl text-headline-xl text-on-surface" id="cs-analyst-count">342</span>
+<span class="text-body-sm text-secondary">On-shift: 84</span>
+</div>
+<span class="text-body-sm text-on-surface-variant mt-2">Tier 1-3 SOC Operatives</span>
+</div>
+<div class="bg-surface-container/40 backdrop-blur-md p-6 rounded-2xl flex flex-col justify-between">
+<div class="flex items-center justify-between text-on-surface-variant mb-4">
+<span class="text-label-md font-semibold tracking-wide">PENDING/SUSPENDED</span>
+<span class="material-symbols-outlined text-error">warning</span>
+</div>
+<div class="flex items-baseline gap-3">
+<span class="font-headline-xl text-headline-xl text-on-surface" id="cs-pending-count">7</span>
+<span class="text-body-sm text-error">Requires review</span>
+</div>
+<span class="text-body-sm text-on-surface-variant mt-2">Auto-quarantine active</span>
+</div>
+</div>
+<!-- Main User Table Section -->
+<div class="bg-surface-container/40 backdrop-blur-xl rounded-2xl overflow-hidden flex flex-col">
+<!-- Filters & Search Toolbar -->
+<div class="p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-outline-variant/10">
+<div class="flex items-center gap-3 flex-1 max-w-md">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-sm">search</span>
+<input id="cs-user-search" class="w-full bg-surface-container-lowest text-on-surface pl-10 pr-4 py-2 rounded-xl text-body-md focus:outline-none focus:ring-1 focus:ring-secondary" placeholder="Filter by name, email hash, or UID..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-3">
+<select id="cs-role-filter" class="bg-surface-container-lowest text-on-surface px-4 py-2 rounded-xl text-body-md focus:outline-none focus:ring-1 focus:ring-secondary">
+<option>All Roles</option>
+<option>Administrator</option>
+<option>Security Analyst</option>
+<option>Viewer</option>
+</select>
+<select id="cs-status-filter" class="bg-surface-container-lowest text-on-surface px-4 py-2 rounded-xl text-body-md focus:outline-none focus:ring-1 focus:ring-secondary">
+<option>All Statuses</option>
+<option>Active</option>
+<option>Suspended</option>
+<option>Pending</option>
+</select>
+<button class="flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-container-high text-on-surface text-body-md hover:bg-surface-container-highest transition-all">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+          Advanced
+        </button>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low/50 text-on-surface-variant text-label-md">
+<th class="py-4 px-6 font-semibold">User &amp; Identity</th>
+<th class="py-4 px-6 font-semibold">Assigned Role</th>
+<th class="py-4 px-6 font-semibold">Status</th>
+<th class="py-4 px-6 font-semibold">Permissions</th>
+<th class="py-4 px-6 font-semibold">Last Active</th>
+<th class="py-4 px-6 font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10 text-body-md" id="cs-users-tbody">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container/40 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover border border-secondary/40" data-alt="Portrait photo of a professional security administrator wearing dark clothing against a blurred tech-office background with cyan highlights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIlLC88JXxjuWY4J6Nunnc4_iQKBIGTNfUsHd4rrY6oC_KDz81zgQjxXjtw8odsVwWbOpkm-HTaNdYzC2xZAfPQQABzmLsGy3NaOVv1WXw6jQYM9rNkMAnQR8fGqvpwkwGsQ83xsDbPNKbzBfgCR7-j7zltmDMQoLy0AuxA3NcwebBNcfamSx0hhmpmfcoi04snyYM3N8jt8OGA-WInesidmxW7dnZ2wWR4bI572s"/>
+<div class="flex flex-col">
+<span class="font-headline-sm text-on-surface">Marcus Vance</span>
+<span class="text-body-sm text-on-surface-variant font-code-mono">m.vance@cybershield.internal</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-label-md bg-primary/10 text-primary border border-primary/20">
+<span class="material-symbols-outlined text-xs">admin_panel_settings</span>
+                Administrator
+              </span>
+</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-body-sm bg-secondary/10 text-secondary border border-secondary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+                Active
+              </span>
+</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-1">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant text-body-sm font-code-mono">IAM:ALL</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant text-body-sm font-code-mono">NET:CTL</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant text-body-sm font-code-mono">+4</span>
+</div>
+</td>
+<td class="py-4 px-6 text-on-surface-variant font-code-mono text-body-sm">
+              Just now
+            </td>
+<td class="py-4 px-6 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface-variant transition-all" title="Edit User">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container-high hover:bg-error hover:text-on-error text-on-surface-variant transition-all" title="Suspend Account">
+<span class="material-symbols-outlined text-sm">block</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container/40 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover border border-secondary/40" data-alt="Portrait of a female security analyst with serious expression, wearing a hoodie and working in a dark room illuminated by multiple blue monitors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnqDJ4s1oNbJ6P2wUZtjJ3g1gkh7nGILOEpL3_eMB8rLr6t6TTfj9CUx3cZgfmqC1HJzxfIHaUbmWAaifaWdCbx2R-TS_OeSSm_ts1E8K8sLA4kNnGKHcfHlVO15hg1CzxgPr_CK5sMuXit2rsqeRYiaG4pmvnU1crjwAaIQPP2OfBvSd6OoDDqDcU3YbHx76AR5DyHMGz-o51XzP5AtG2n-n0YmENo1o51PO3ZM4"/>
+<div class="flex flex-col">
+<span class="font-headline-sm text-on-surface">Elena Rostova</span>
+<span class="text-body-sm text-on-surface-variant font-code-mono">e.rostova@cybershield.internal</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-label-md bg-secondary/10 text-secondary border border-secondary/20">
+<span class="material-symbols-outlined text-xs">shield</span>
+                Security Analyst
+              </span>
+</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-body-sm bg-secondary/10 text-secondary border border-secondary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+                Active
+              </span>
+</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-1">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant text-body-sm font-code-mono">SIEM:RD</span>
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant text-body-sm font-code-mono">INC:WR</span>
+</div>
+</td>
+<td class="py-4 px-6 text-on-surface-variant font-code-mono text-body-sm">
+              4m ago
+            </td>
+<td class="py-4 px-6 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface-variant transition-all" title="Edit User">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container-high hover:bg-error hover:text-on-error text-on-surface-variant transition-all" title="Suspend Account">
+<span class="material-symbols-outlined text-sm">block</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container/40 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover border border-secondary/40" data-alt="Portrait of a young male IT professional in a sleek modern server room setting with neon blue ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA80AjfhYuPXmblZF4UJvj9w9A6EbYpl7ZeWOSbaTlUrUH6H9HcI8gTyOpOtgeCg81p-etq2-HYU6JCa1PlgKm8jbEWVzFuo_d1oCzGLOEmCaBxm11E7-2pxtVMQ4O96H4vqooSGkGal0bIZrkl4sVUJqtvshFnNG5WZ7j_VxOBxztlojLhGfvXbgXiOfvKJ9RcM8TLPSAGaSCQwQxyZpGDgH9yRm5LdyTOvOKBu6I"/>
+<div class="flex flex-col">
+<span class="font-headline-sm text-on-surface">Devon Chen</span>
+<span class="text-body-sm text-on-surface-variant font-code-mono">d.chen@cybershield.internal</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-label-md bg-secondary/10 text-secondary border border-secondary/20">
+<span class="material-symbols-outlined text-xs">shield</span>
+                Security Analyst
+              </span>
+</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-body-sm bg-error/10 text-error border border-error/20">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                Suspended
+              </span>
+</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-1">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant text-body-sm font-code-mono">REVOKED</span>
+</div>
+</td>
+<td class="py-4 px-6 text-on-surface-variant font-code-mono text-body-sm">
+              3d ago
+            </td>
+<td class="py-4 px-6 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface-variant transition-all" title="Edit User">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container-high hover:bg-secondary hover:text-on-secondary text-on-surface-variant transition-all" title="Restore Account">
+<span class="material-symbols-outlined text-sm">check_circle</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container/40 transition-colors group">
+<td class="py-4 px-6">
+<div class="flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover border border-secondary/40" data-alt="Portrait of an auditor wearing business casual attire in front of a digital data stream wall background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOw-IjUbSB69E1kPrvTJgifQE_OJHzAp9Uooxyy0Cf_98azm-qr4ieHcQr7ENfL5nUkvqvNchoW1qLFgV-V4-_Vw2kP70BR5uQ9uWNfOKE59MgEwyFIVTiv0u945_fw6z8HxZ4YW85Z20J8zEtdFVPaVGA36dp4grRgL12UpEhEObK3U5zQ6nv7Xxb0lqooQuc4jsvXGJ4Vpzy3Zb_DT3SKtYyPv-kh0d3BYkpQAE"/>
+<div class="flex flex-col">
+<span class="font-headline-sm text-on-surface">Sarah Jenkins</span>
+<span class="text-body-sm text-on-surface-variant font-code-mono">s.jenkins@cybershield.internal</span>
+</div>
+</div>
+</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-label-md bg-surface-container-high text-on-surface-variant border border-outline-variant/30">
+<span class="material-symbols-outlined text-xs">visibility</span>
+                Viewer
+              </span>
+</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-body-sm bg-tertiary/10 text-tertiary border border-tertiary/20">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary"></span>
+                Pending
+              </span>
+</td>
+<td class="py-4 px-6">
+<div class="flex items-center gap-1">
+<span class="px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant text-body-sm font-code-mono">AUDIT:RD</span>
+</div>
+</td>
+<td class="py-4 px-6 text-on-surface-variant font-code-mono text-body-sm">
+              Never
+            </td>
+<td class="py-4 px-6 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="p-2 rounded-lg bg-surface-container-high hover:bg-primary hover:text-on-primary text-on-surface-variant transition-all" title="Edit User">
+<span class="material-symbols-outlined text-sm">edit</span>
+</button>
+<button class="p-2 rounded-lg bg-surface-container-high hover:bg-error hover:text-on-error text-on-surface-variant transition-all" title="Delete">
+<span class="material-symbols-outlined text-sm">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer Pagination -->
+<div class="p-6 border-t border-outline-variant/10 flex items-center justify-between text-body-sm text-on-surface-variant">
+<span id="cs-users-showing">Showing users</span>
+<div class="flex items-center gap-2" id="cs-users-pagination"></div>
+</div>
+</div>
+<!-- Account Security Management Controls Bottom Panel -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<!-- Security Enforcement -->
+<div class="bg-surface-container/40 backdrop-blur-xl p-6 rounded-2xl flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline-md text-on-surface">MFA Enforcement</h3>
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+</div>
+<p class="text-body-md text-on-surface-variant mb-6">
+          Global policy mandates hardware token or authenticator app for all roles. Password-only logins are strictly blocked.
+        </p>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant/10">
+<span class="text-label-md text-secondary">STRICT MODE ACTIVE</span>
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox"/>
+<div class="w-11 h-6 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-secondary"></div>
+</label>
+</div>
+</div>
+<!-- Session TTL -->
+<div class="bg-surface-container/40 backdrop-blur-xl p-6 rounded-2xl flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline-md text-on-surface">Session Timeout</h3>
+<span class="material-symbols-outlined text-primary">timer</span>
+</div>
+<p class="text-body-md text-on-surface-variant mb-6">
+          Automatic token revocation and forced re-authentication after inactivity threshold reached.
+        </p>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant/10">
+<span class="text-body-sm font-code-mono text-on-surface">TIMEOUT: 15 MINS</span>
+<select class="bg-surface-container-lowest text-on-surface px-3 py-1 rounded-lg text-body-sm focus:outline-none">
+<option>15 Minutes</option>
+<option>30 Minutes</option>
+<option>1 Hour</option>
+</select>
+</div>
+</div>
+<!-- Automated SCIM Sync -->
+<div class="bg-surface-container/40 backdrop-blur-xl p-6 rounded-2xl flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<h3 class="font-headline-md text-on-surface">Directory Sync (SCIM)</h3>
+<span class="material-symbols-outlined text-tertiary">sync</span>
+</div>
+<p class="text-body-md text-on-surface-variant mb-6">
+          Active Directory &amp; Okta federation endpoints synchronized every 300 seconds.
+        </p>
+</div>
+<div class="flex items-center justify-between pt-4 border-t border-outline-variant/10">
+<span class="text-label-md text-tertiary">SYNC HEALTH: 99.9%</span>
+<button class="px-3 py-1.5 bg-surface-container-high hover:bg-surface-container-highest rounded-lg text-body-sm text-on-surface">
+          Sync Now
+        </button>
+</div>
+</div>
+</div>
+<!-- Interactive Provision Modal (Hidden by default) -->
+<div class="fixed inset-0 z-50 flex items-center justify-center bg-surface-container-lowest/80 backdrop-blur-md hidden" id="provisionModal">
+<div class="bg-surface-container-highest border border-outline-variant/20 p-8 rounded-2xl w-full max-w-lg shadow-2xl relative">
+<button class="absolute top-6 right-6 text-on-surface-variant hover:text-on-surface" onclick="closeModal()">
+<span class="material-symbols-outlined">close</span>
+</button>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-2">Provision New User</h2>
+<p class="text-body-md text-on-surface-variant mb-6">Create credentials and assign initial security clearances.</p>
+<div class="space-y-4">
+<div>
+<label class="block text-label-md text-on-surface-variant mb-2" for="cs-new-fullname">Full Name</label>
+<input id="cs-new-fullname" class="w-full bg-surface-container-lowest text-on-surface px-4 py-3 rounded-xl border border-outline-variant/30 focus:outline-none focus:border-secondary" placeholder="e.g. Alex Mercer" type="text"/>
+</div>
+<div>
+<label class="block text-label-md text-on-surface-variant mb-2" for="cs-new-email">Internal Email</label>
+<input id="cs-new-email" class="w-full bg-surface-container-lowest text-on-surface px-4 py-3 rounded-xl border border-outline-variant/30 focus:outline-none focus:border-secondary" placeholder="a.mercer@cybershield.internal" type="email"/>
+</div>
+<div>
+<label class="block text-label-md text-on-surface-variant mb-2" for="cs-new-role">Access Role</label>
+<select id="cs-new-role" class="w-full bg-surface-container-lowest text-on-surface px-4 py-3 rounded-xl border border-outline-variant/30 focus:outline-none focus:border-secondary">
+<option>Security Analyst (Tier 1)</option>
+<option>Security Analyst (Tier 2)</option>
+<option>Administrator</option>
+<option>Viewer</option>
+</select>
+</div>
+</div>
+<div class="flex items-center justify-end gap-3 mt-8">
+<button class="px-5 py-2.5 rounded-xl bg-surface-container text-on-surface font-label-lg hover:bg-surface-container-high" onclick="closeModal()">Cancel</button>
+<button class="px-5 py-2.5 rounded-xl bg-primary text-on-primary font-label-lg hover:bg-primary-container" onclick="csProvisionUser()">Generate Credentials</button>
+</div>
+</div>
+</div>
+<script>
+    function openModal() {
+      document.getElementById('provisionModal').classList.remove('hidden');
+    }
+    function closeModal() {
+      document.getElementById('provisionModal').classList.add('hidden');
+    }
+  </script>
+</div></main></div><script src="cs-api.js"></script><script src="cs-users.js"></script><script id="cs-nav">
+(function(){
+ var b=document.body;
+ var btn=document.createElement('button');btn.className='cs-burger';btn.setAttribute('aria-label','Toggle navigation');
+ btn.innerHTML='<span class="material-symbols-outlined">menu</span>';
+ var sc=document.createElement('div');sc.className='cs-scrim';
+ b.appendChild(btn);b.appendChild(sc);
+ btn.onclick=function(){var o=b.classList.toggle('cs-nav-open');btn.firstChild.textContent=o?'close':'menu'};sc.onclick=function(){b.classList.remove('cs-nav-open');btn.firstChild.textContent='menu'};
+ document.addEventListener('keydown',function(e){if(e.key==='Escape')b.classList.remove('cs-nav-open')});
+ document.querySelectorAll('aside img').forEach(function(i){var f=function(){
+  var s=document.createElement('span');s.className='material-symbols-outlined text-secondary-container';s.style.fontVariationSettings="'FILL' 1";s.textContent='shield';i.replaceWith(s)};
+  i.addEventListener('error',f);if(i.complete&&i.naturalWidth===0)f();});
+})();
+</script></body></html>

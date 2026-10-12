@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><title>Security Alerts | CyberShield SOC</title><meta name="description" content="CyberShield SOC — Security Alerts. Real-time cybersecurity monitoring and threat intelligence."><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary-fixed-variant": "#004398", "tertiary-fixed": "#eaddff", "surface-container-lowest": "#0b0e16", "on-primary": "#002d6c", "on-tertiary": "#3f008e", "inverse-surface": "#e0e2ed", "surface-container": "#1c1f28", "tertiary": "#d2bbff", "on-tertiary-container": "#36007d", "surface-container-high": "#272a32", "tertiary-fixed-dim": "#d2bbff", "background": "#10131b", "on-tertiary-fixed": "#25005a", "on-surface": "#e0e2ed", "on-tertiary-fixed-variant": "#5a00c6", "on-secondary-fixed-variant": "#004e5d", "inverse-primary": "#0059c7", "secondary-container": "#00d9ff", "surface-container-highest": "#32353d", "on-secondary-fixed": "#001f26", "secondary-fixed": "#aeecff", "on-primary-container": "#00275f", "primary-fixed": "#d9e2ff", "surface-dim": "#10131b", "on-error": "#690005", "outline-variant": "#414755", "on-secondary-container": "#005b6c", "tertiary-container": "#a476ff", "on-error-container": "#ffdad6", "inverse-on-surface": "#2d3039", "surface-container-low": "#181b23", "surface-tint": "#afc6ff", "on-surface-variant": "#c1c6d7", "on-background": "#e0e2ed", "outline": "#8b90a0", "surface-variant": "#32353d", "primary-fixed-dim": "#afc6ff", "error-container": "#93000a", "error": "#ffb4ab", "primary": "#afc6ff", "primary-container": "#528dff", "on-secondary": "#003641", "on-primary-fixed": "#001a43", "surface": "#10131b", "secondary-fixed-dim": "#00d9ff", "secondary": "#aeecff", "surface-bright": "#363942" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-xs": "0.25rem", "margin": "1.5rem", "space-2xl": "3rem", "space-md": "1rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "space-xl": "2rem", "gutter": "1rem" }, "fontFamily": { "headline-md": ["Space Grotesk"], "label-lg": ["Space Grotesk"], "body-sm": ["Inter"], "headline-lg": ["Space Grotesk"], "headline-xl": ["Space Grotesk"], "body-lg": ["Inter"], "headline-sm": ["Space Grotesk"], "body-md": ["Inter"], "code-mono": ["Space Grotesk"], "label-md": ["Space Grotesk"] }, "fontSize": { "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "500" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "code-mono": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }] } } } }</script><style id="cs-responsive">
+.cs-burger{display:none}
+@media (max-width:1023px){
+ aside.fixed.left-0{transform:translateX(-100%);transition:transform .25s ease;width:18rem}
+ body.cs-nav-open aside.fixed.left-0{transform:translateX(0)}
+ .pl-72{padding-left:0!important}
+ header.fixed.left-72{left:0!important;padding-left:4rem!important;padding-right:1rem!important}
+ .cs-burger{display:flex;position:fixed;top:.75rem;left:.75rem;z-index:60;width:2.5rem;height:2.5rem;align-items:center;justify-content:center;border-radius:.75rem;background:rgba(11,14,22,.9);border:1px solid rgba(0,217,255,.25);color:#e0e2ed;cursor:pointer}
+ .cs-scrim{position:fixed;inset:0;background:rgba(5,7,13,.6);z-index:45;display:none}
+ body.cs-nav-open .cs-scrim{display:block}
+ body.cs-nav-open .cs-burger{left:18.75rem}
+ header.fixed .w-96{width:100%!important}
+ main{padding:1rem!important}
+ table{display:block;overflow-x:auto;white-space:nowrap}
+}
+@media (max-width:640px){ header.fixed [class*="border-l"]{padding-left:.5rem!important} }
+</style></head><body class="bg-surface font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest/80 backdrop-blur-xl z-50 flex flex-col py-6 shadow-[0_0_20px_rgba(22,119,255,0.05)]"><div class="px-6 mb-8 flex items-center gap-3"><img alt="CyberShield Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Wecbnkqc8L1mZDLKv3OPQlZAmAa1rVSwrZTCRMmLzKmBGqxqcIDa6KKVuWl7lM7N_plRgAn8veaFzPOi9II4ubOW_mm-b1x7ll0ZNSxF0avhmxYTBoFwmcQ6XEITDHuU0yapBt-4T4B7oVai1S6Qti8U3BZ3gmIGtlTrgbdrX8NAohYX1x94HIHHLqgJCWZxzpG0HBAgPz81hZTMJV-3M1yyryPhXpeYExOtOS-0Cr"/><span class="font-headline-md text-headline-sm tracking-tight text-primary">CyberShield</span></div><nav class="flex-1 px-4 space-y-space-xs overflow-y-auto" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_0_15px_rgba(82,141,255,0.3)]"><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="dashboard" href="index.html"><span class="material-symbols-outlined mr-3">dashboard</span>Dashboard</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="threats" href="threats.html"><span class="material-symbols-outlined mr-3">crisis_alert</span>Threats</a><a aria-current="page" class="flex items-center px-4 py-3 rounded-xl transition-all bg-primary-container text-on-primary-container font-semibold shadow-[0_0_15px_rgba(82,141,255,0.3)]" data-path="alerts" href="alerts.html"><span class="material-symbols-outlined mr-3">notifications_active</span>Alerts</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="network" href="network.html"><span class="material-symbols-outlined mr-3">hub</span>Network</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="devices" href="devices.html"><span class="material-symbols-outlined mr-3">dns</span>Devices</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="incidents" href="incidents.html"><span class="material-symbols-outlined mr-3">report</span>Incidents</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="reports" href="reports.html"><span class="material-symbols-outlined mr-3">analytics</span>Reports</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="users" href="users.html"><span class="material-symbols-outlined mr-3">group</span>Users</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="settings" href="settings.html"><span class="material-symbols-outlined mr-3">settings</span>Settings</a></nav><div class="px-6 pt-4 border-t border-outline-variant/20 mt-auto"><div class="flex items-center gap-3 p-3 rounded-xl bg-surface-container/50 border border-secondary/20"><div class="w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_8px_rgba(0,217,255,0.8)] animate-pulse"><div></div></div><div class="flex flex-col"><span class="text-label-md text-on-surface font-semibold">SYSTEM OPERATIONAL</span><span class="text-body-sm text-on-surface-variant">All nodes reporting 99.9%</span></div></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/80 backdrop-blur-xl z-40 flex items-center justify-between px-8"><div class="flex items-center gap-4 w-96"><div class="relative w-full"><span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-sm">search</span><input class="w-full bg-surface-container-lowest text-on-surface pl-10 pr-4 py-2 rounded-xl text-body-md border border-outline-variant/30 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary" placeholder="Search telemetry, hashes, IPs..." type="text"/></div></div><div class="flex items-center gap-6"><div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container border border-secondary/30 shadow-[0_0_10px_rgba(0,217,255,0.1)]"><span class="material-symbols-outlined text-secondary text-sm">shield</span><span class="text-label-md text-secondary font-semibold">SECURE STATE</span></div><button class="relative text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined">notifications</span><span class="absolute top-0 right-0 w-2 h-2 rounded-full bg-error"></span></button><div class="flex items-center gap-3 pl-4 border-l border-outline-variant/30"><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-secondary/50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAio-YJa7LbB5tjKAFFWdqAcXIhl_AofPC0pEsMPpzK7C9xJOipKHmZKTSgPUQaK8h9QiGrGvgf7fTukk1Cc9e7MFfFPul34pGSwYaXk3pMdW0pgXM3zcg9O0_rqPtzz-nqZ5Q8sy_xSF-dNhYkTuIS6Zch6a03SE2VPZXOEdrH_XyT4nPCP7Q6eQnM06L7bFoxSpue8M69qMfqFgn6t1nrlk7pzx_Ij7se9-DftU"/></div></div></header><main class="relative pt-16 bg-surface min-h-screen p-space-lg"><div class="flex flex-col w-full text-on-surface">
+<!-- Top Stats Row -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-space-xl">
+<div class="bg-surface-container/70 backdrop-blur-xl p-space-lg rounded-xl flex items-center justify-between shadow-[0_0_20px_rgba(22,119,255,0.05)]">
+<div>
+<p class="text-label-md text-on-surface-variant uppercase tracking-wider mb-space-xs">Active Alerts</p>
+<h3 id="st-active" class="text-headline-lg text-on-surface">1,284</h3>
+<span class="text-body-sm text-error flex items-center mt-1"><span class="material-symbols-outlined text-xs mr-1">trending_up</span>+12% from last hour</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-error/10 flex items-center justify-center text-error shadow-[0_0_15px_rgba(255,180,171,0.2)]">
+<span class="material-symbols-outlined">crisis_alert</span>
+</div>
+</div>
+<div class="bg-surface-container/70 backdrop-blur-xl p-space-lg rounded-xl flex items-center justify-between shadow-[0_0_20px_rgba(22,119,255,0.05)]">
+<div>
+<p class="text-label-md text-on-surface-variant uppercase tracking-wider mb-space-xs">Critical Severity</p>
+<h3 id="st-critical" class="text-headline-lg text-secondary">48</h3>
+<span class="text-body-sm text-secondary flex items-center mt-1"><span class="material-symbols-outlined text-xs mr-1">shield</span>Requiring immediate triage</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary shadow-[0_0_15px_rgba(0,217,255,0.2)]">
+<span class="material-symbols-outlined">error</span>
+</div>
+</div>
+<div class="bg-surface-container/70 backdrop-blur-xl p-space-lg rounded-xl flex items-center justify-between shadow-[0_0_20px_rgba(22,119,255,0.05)]">
+<div>
+<p class="text-label-md text-on-surface-variant uppercase tracking-wider mb-space-xs">Under Investigation</p>
+<h3 id="st-invest" class="text-headline-lg text-on-surface">312</h3>
+<span class="text-body-sm text-on-surface-variant flex items-center mt-1"><span class="material-symbols-outlined text-xs mr-1">schedule</span>Avg. time 14m</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center text-primary shadow-[0_0_15px_rgba(175,198,255,0.2)]">
+<span class="material-symbols-outlined">radar</span>
+</div>
+</div>
+<div class="bg-surface-container/70 backdrop-blur-xl p-space-lg rounded-xl flex items-center justify-between shadow-[0_0_20px_rgba(22,119,255,0.05)]">
+<div>
+<p class="text-label-md text-on-surface-variant uppercase tracking-wider mb-space-xs">Auto-Blocked</p>
+<h3 id="st-blocked" class="text-headline-lg text-on-surface">924</h3>
+<span class="text-body-sm text-secondary flex items-center mt-1"><span class="material-symbols-outlined text-xs mr-1">check_circle</span>99.8% efficacy</span>
+</div>
+<div class="w-12 h-12 rounded-xl bg-tertiary/10 flex items-center justify-center text-tertiary shadow-[0_0_15px_rgba(210,187,255,0.2)]">
+<span class="material-symbols-outlined">verified_user</span>
+</div>
+</div>
+</div>
+<!-- Filter & Search Toolbar -->
+<div class="bg-surface-container/50 backdrop-blur-xl p-space-md rounded-xl mb-space-lg flex flex-wrap items-center justify-between gap-4">
+<div class="flex flex-wrap items-center gap-3 flex-1">
+<div class="relative min-w-[280px] flex-1">
+<span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-sm">filter_list</span>
+<input id="f-search" aria-label="Filter alerts" class="w-full bg-surface-container-lowest text-on-surface pl-10 pr-4 py-2 rounded-xl text-body-md outline-none focus:ring-1 focus:ring-secondary transition-all" placeholder="Filter alerts by IOC, IP, signature, or CVE..." type="text"/>
+</div>
+<!-- Severity Filter -->
+<select id="f-sev" aria-label="Severity" class="bg-surface-container-lowest text-on-surface px-4 py-2 rounded-xl text-body-md outline-none focus:ring-1 focus:ring-secondary cursor-pointer">
+<option value="">Severity: All</option>
+<option value="critical">Critical</option>
+<option value="high">High</option>
+<option value="medium">Medium</option>
+<option value="low">Low</option>
+</select>
+<!-- Status Filter -->
+<select id="f-status" aria-label="Status" class="bg-surface-container-lowest text-on-surface px-4 py-2 rounded-xl text-body-md outline-none focus:ring-1 focus:ring-secondary cursor-pointer">
+<option value="">Status: All</option>
+<option value="new">New</option>
+<option value="investigating">Investigating</option>
+<option value="resolved">Resolved</option>
+<option value="blocked">Blocked</option>
+</select>
+<!-- Date Filter -->
+<select id="f-range" aria-label="Date range" class="bg-surface-container-lowest text-on-surface px-4 py-2 rounded-xl text-body-md outline-none focus:ring-1 focus:ring-secondary cursor-pointer">
+<option value="24h">Last 24 Hours</option>
+<option value="7d">Last 7 Days</option>
+<option value="30d">Last 30 Days</option>
+<option value="custom">Custom Range</option>
+</select>
+</div>
+<div class="flex items-center gap-3">
+<button id="btn-export" class="flex items-center gap-2 px-4 py-2 rounded-xl bg-surface-container-lowest text-on-surface hover:bg-surface-container-high transition-all text-label-md">
+<span class="material-symbols-outlined text-sm">download</span>Export IOCs
+      </button>
+<button class="flex items-center gap-2 px-4 py-2 rounded-xl bg-primary-container text-on-primary-container font-semibold hover:opacity-90 transition-all text-label-md shadow-[0_0_15px_rgba(82,141,255,0.3)]" id="btn-bulk" onclick="openBulkActionModal()">
+<span class="material-symbols-outlined text-sm">bolt</span>Bulk Isolate
+      </button>
+</div>
+</div>
+<!-- Alerts Table Container -->
+<div class="bg-surface-container/70 backdrop-blur-xl rounded-xl overflow-hidden shadow-[0_0_20px_rgba(22,119,255,0.05)]">
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-high/50 text-on-surface-variant text-label-md uppercase tracking-wider">
+<th class="p-4 w-10"><input id="chk-all" aria-label="Select all" class="rounded accent-secondary" type="checkbox"/></th>
+<th class="p-4">Severity</th>
+<th class="p-4">Alert Signature / Details</th>
+<th class="p-4">Source IP</th>
+<th class="p-4">Destination Target</th>
+<th class="p-4">Status</th>
+<th class="p-4">Timestamp</th>
+<th class="p-4 text-right">Action</th>
+</tr>
+</thead>
+<tbody id="alerts-body" class="divide-y divide-outline-variant/10 font-body-md">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-high/40 cursor-pointer transition-colors group" onclick="openSlideOver('ALT-9821')">
+<td class="p-4" onclick="event.stopPropagation()"><input class="rounded accent-secondary" type="checkbox"/></td>
+<td class="p-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-label-md bg-error/10 text-error border border-error/30 shadow-[0_0_10px_rgba(255,180,171,0.2)]">
+<span class="w-1.5 h-1.5 rounded-full bg-error mr-1.5 animate-pulse"></span>Critical
+              </span>
+</td>
+<td class="p-4">
+<div class="font-headline-sm text-on-surface group-hover:text-secondary transition-colors">Cobalt Strike Beacon C2 Traffic</div>
+<div class="text-body-sm text-on-surface-variant font-code-mono mt-0.5">SHA256: 4e9076...81fd2</div>
+</td>
+<td class="p-4 font-code-mono text-secondary">192.168.4.112</td>
+<td class="p-4 font-code-mono text-on-surface-variant">185.220.101.5 (External)</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-label-md bg-secondary/10 text-secondary border border-secondary/30">
+                New
+              </span>
+</td>
+<td class="p-4 text-on-surface-variant text-body-sm">Just now (14:22:01)</td>
+<td class="p-4 text-right" onclick="event.stopPropagation()">
+<button class="p-2 rounded-xl hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" onclick="openSlideOver('ALT-9821')">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-high/40 cursor-pointer transition-colors group" onclick="openSlideOver('ALT-9820')">
+<td class="p-4" onclick="event.stopPropagation()"><input class="rounded accent-secondary" type="checkbox"/></td>
+<td class="p-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-label-md bg-tertiary/10 text-tertiary border border-tertiary/30">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary mr-1.5"></span>High
+              </span>
+</td>
+<td class="p-4">
+<div class="font-headline-sm text-on-surface group-hover:text-secondary transition-colors">Suspicious PowerShell Execution (Encoded)</div>
+<div class="text-body-sm text-on-surface-variant font-code-mono mt-0.5">Proc: powershell.exe -enc JABh...</div>
+</td>
+<td class="p-4 font-code-mono text-secondary">10.0.12.45 (WS-FIN-09)</td>
+<td class="p-4 font-code-mono text-on-surface-variant">Internal DC-01</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-label-md bg-primary/10 text-primary border border-primary/30">
+                Investigating
+              </span>
+</td>
+<td class="p-4 text-on-surface-variant text-body-sm">12 mins ago</td>
+<td class="p-4 text-right" onclick="event.stopPropagation()">
+<button class="p-2 rounded-xl hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" onclick="openSlideOver('ALT-9820')">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-high/40 cursor-pointer transition-colors group" onclick="openSlideOver('ALT-9819')">
+<td class="p-4" onclick="event.stopPropagation()"><input class="rounded accent-secondary" type="checkbox"/></td>
+<td class="p-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-label-md bg-error/10 text-error border border-error/30">
+<span class="w-1.5 h-1.5 rounded-full bg-error mr-1.5 animate-pulse"></span>Critical
+              </span>
+</td>
+<td class="p-4">
+<div class="font-headline-sm text-on-surface group-hover:text-secondary transition-colors">Ransomware Behavior: Mass File Encryption</div>
+<div class="text-body-sm text-on-surface-variant font-code-mono mt-0.5">Extension rename storm detected (.locked)</div>
+</td>
+<td class="p-4 font-code-mono text-secondary">10.0.8.99 (FS-NAS-01)</td>
+<td class="p-4 font-code-mono text-on-surface-variant">Local Volumes</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-label-md bg-secondary/10 text-secondary border border-secondary/30 shadow-[0_0_10px_rgba(0,217,255,0.2)]">
+                Blocked
+              </span>
+</td>
+<td class="p-4 text-on-surface-variant text-body-sm">45 mins ago</td>
+<td class="p-4 text-right" onclick="event.stopPropagation()">
+<button class="p-2 rounded-xl hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" onclick="openSlideOver('ALT-9819')">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-high/40 cursor-pointer transition-colors group" onclick="openSlideOver('ALT-9818')">
+<td class="p-4" onclick="event.stopPropagation()"><input class="rounded accent-secondary" type="checkbox"/></td>
+<td class="p-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-label-md bg-surface-container-highest text-on-surface-variant border border-outline-variant/30">
+<span class="w-1.5 h-1.5 rounded-full bg-outline mr-1.5"></span>Medium
+              </span>
+</td>
+<td class="p-4">
+<div class="font-headline-sm text-on-surface group-hover:text-secondary transition-colors">Brute Force Attack (SSH Multiple Failures)</div>
+<div class="text-body-sm text-on-surface-variant font-code-mono mt-0.5">142 failed attempts in 60s</div>
+</td>
+<td class="p-4 font-code-mono text-secondary">45.33.32.156 (External)</td>
+<td class="p-4 font-code-mono text-on-surface-variant">10.0.1.5 (Bastion Host)</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-label-md bg-surface-container-highest text-on-surface border border-outline-variant/30">
+                Resolved
+              </span>
+</td>
+<td class="p-4 text-on-surface-variant text-body-sm">2 hours ago</td>
+<td class="p-4 text-right" onclick="event.stopPropagation()">
+<button class="p-2 rounded-xl hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" onclick="openSlideOver('ALT-9818')">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface-container-high/40 cursor-pointer transition-colors group" onclick="openSlideOver('ALT-9817')">
+<td class="p-4" onclick="event.stopPropagation()"><input class="rounded accent-secondary" type="checkbox"/></td>
+<td class="p-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-label-md bg-tertiary/10 text-tertiary border border-tertiary/30">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary mr-1.5"></span>High
+              </span>
+</td>
+<td class="p-4">
+<div class="font-headline-sm text-on-surface group-hover:text-secondary transition-colors">Unauthorized Data Exfiltration Attempt</div>
+<div class="text-body-sm text-on-surface-variant font-code-mono mt-0.5">Outbound transfer &gt; 4.2 GB via HTTPS</div>
+</td>
+<td class="p-4 font-code-mono text-secondary">10.0.4.18 (EXCH-02)</td>
+<td class="p-4 font-code-mono text-on-surface-variant">198.51.100.42 (Mega.nz)</td>
+<td class="p-4">
+<span class="inline-flex items-center px-2.5 py-1 rounded-full text-label-md bg-primary/10 text-primary border border-primary/30">
+                Investigating
+              </span>
+</td>
+<td class="p-4 text-on-surface-variant text-body-sm">3 hours ago</td>
+<td class="p-4 text-right" onclick="event.stopPropagation()">
+<button class="p-2 rounded-xl hover:bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors" onclick="openSlideOver('ALT-9817')">
+<span class="material-symbols-outlined text-sm">visibility</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Pagination -->
+<div class="p-4 bg-surface-container-low/50 flex items-center justify-between border-t border-outline-variant/10">
+<span id="pg-info" class="text-body-sm text-on-surface-variant">Showing 1-5 of 1,284 alerts</span>
+<div id="pg-btns" class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-xl bg-surface-container text-on-surface-variant hover:text-on-surface transition-colors text-label-md disabled:opacity-50" disabled="">Previous</button>
+<button class="px-3 py-1.5 rounded-xl bg-primary-container text-on-primary-container font-semibold text-label-md">1</button>
+<button class="px-3 py-1.5 rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors text-label-md">2</button>
+<button class="px-3 py-1.5 rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors text-label-md">3</button>
+<span class="text-on-surface-variant">...</span>
+<button class="px-3 py-1.5 rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors text-label-md">257</button>
+<button class="px-3 py-1.5 rounded-xl bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors text-label-md">Next</button>
+</div>
+</div>
+</div>
+<!-- Slide-Over Inspection Panel -->
+<div class="fixed inset-0 z-50 overflow-hidden pointer-events-none opacity-0 transition-opacity duration-300" id="slideOver">
+<div class="absolute inset-0 bg-surface/60 backdrop-blur-sm" onclick="closeSlideOver()"></div>
+<div class="absolute inset-y-0 right-0 max-w-2xl w-full bg-surface-container-lowest border-l border-outline-variant/20 shadow-2xl flex flex-col transform translate-x-full transition-transform duration-300 pointer-events-auto" id="slideOverPanel">
+<!-- Slide-Over Header -->
+<div class="p-6 bg-surface-container/50 border-b border-outline-variant/20 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span id="so-sev"><span class="inline-flex items-center px-3 py-1 rounded-full text-label-md bg-error/10 text-error border border-error/30">Critical Severity</span></span>
+<span id="so-code" class="text-code-mono text-on-surface-variant">ALT-9821</span>
+</div>
+<button class="p-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors" onclick="closeSlideOver()">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<!-- Slide-Over Content Body -->
+<div class="flex-1 overflow-y-auto p-6 space-y-space-xl">
+<!-- Alert Title & Description -->
+<div>
+<h2 id="so-title" class="text-headline-md text-on-surface mb-2">Cobalt Strike Beacon C2 Traffic Detected</h2>
+<p id="so-desc" class="text-body-md text-on-surface-variant">EDR sensor detected outbound HTTPS beaconing to known malicious infrastructure utilizing randomized jitter and HTTP GET request patterns signature-matched to Cobalt Strike default malleable C2 profiles.</p>
+</div>
+<!-- Quick Action Buttons -->
+<div class="p-4 rounded-xl bg-surface-container/80 border border-secondary/20 flex flex-wrap gap-3 items-center justify-between shadow-[0_0_15px_rgba(0,217,255,0.05)]">
+<div>
+<span class="text-label-md text-on-surface font-semibold block">Response Actions</span>
+<span class="text-body-sm text-on-surface-variant">Immediate containment protocols</span>
+</div>
+<div class="flex items-center gap-2">
+<button id="so-isolate" class="px-4 py-2 rounded-xl bg-error text-on-error font-semibold hover:opacity-90 transition-all text-label-md flex items-center gap-1.5 shadow-[0_0_15px_rgba(255,180,171,0.3)]" onclick="triggerAction('Isolate')">
+<span class="material-symbols-outlined text-sm">dangerous</span>Isolate Host
+            </button>
+<button id="so-escalate" class="px-4 py-2 rounded-xl bg-primary-container text-on-primary-container font-semibold hover:opacity-90 transition-all text-label-md flex items-center gap-1.5" onclick="triggerAction('Escalate')">
+<span class="material-symbols-outlined text-sm">priority_high</span>Escalate
+            </button>
+<button id="so-dismiss" class="px-4 py-2 rounded-xl bg-surface-container-high text-on-surface hover:bg-surface-container-highest transition-all text-label-md flex items-center gap-1.5" onclick="triggerAction('Dismiss')">
+<span class="material-symbols-outlined text-sm">check</span>Dismiss
+            </button>
+</div>
+</div>
+<!-- IOC Hashes & Artifacts -->
+<div>
+<h3 class="text-headline-sm text-on-surface mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">fingerprint</span>Indicators of Compromise (IOCs)
+          </h3>
+<div id="so-iocs" class="space-y-2">
+<div class="p-3 rounded-xl bg-surface-container/50 border border-outline-variant/20 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-label-md text-on-surface-variant">SHA256 File Hash</span>
+<span class="text-code-mono text-secondary text-sm">4e907621c8901b2a92c019283fbc81fd2a38910b</span>
+</div>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors" onclick="copyToClipboard('4e907621c8901b2a92c019283fbc81fd2a38910b')" title="Copy Hash">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+</button>
+</div>
+<div class="p-3 rounded-xl bg-surface-container/50 border border-outline-variant/20 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-label-md text-on-surface-variant">Destination IP / Port</span>
+<span class="text-code-mono text-secondary text-sm">185.220.101.5:443 (Tor Exit Node)</span>
+</div>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors" onclick="copyToClipboard('185.220.101.5')" title="Copy IP">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+</button>
+</div>
+<div class="p-3 rounded-xl bg-surface-container/50 border border-outline-variant/20 flex items-center justify-between">
+<div class="flex flex-col">
+<span class="text-label-md text-on-surface-variant">Malicious Process Name</span>
+<span class="text-code-mono text-secondary text-sm">svchost_update.exe (PID: 4912)</span>
+</div>
+<button class="p-2 rounded-lg bg-surface-container hover:bg-surface-container-high text-on-surface-variant hover:text-on-surface transition-colors">
+<span class="material-symbols-outlined text-sm">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Packet Data & Hex Stream -->
+<div id="so-hex">
+<h3 class="text-headline-sm text-on-surface mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">data_object</span>Telemetry Packet Stream (PCAP Hex)
+          </h3>
+<div class="bg-surface-container-lowest p-4 rounded-xl font-code-mono text-xs text-secondary/90 overflow-x-auto border border-secondary/20 shadow-[0_0_15px_rgba(0,217,255,0.05)]">
+<p>0000   45 00 00 3c 1c 46 40 00  40 06 b1 3c c0 a8 04 70   E..&lt;..@.@..@...p</p>
+<p>0010   b9 dc 65 05 d4 35 01 bb  a2 1d 84 92 56 3a a1 2c   ..e..5......V:.,</p>
+<p>0020   80 18 01 f5 3f 72 00 00  01 01 08 0a 3a 4f 2b 12   ....?r......:O+.</p>
+<p>0030   00 00 00 00 17 03 03 00  20 be ef ca fe 00 00 00   ........ .......</p>
+</div>
+</div>
+<!-- Recommended Remediation Steps -->
+<div class="p-5 rounded-xl bg-surface-container/40 border border-primary/20">
+<h3 class="text-headline-sm text-on-surface mb-3 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">recommend</span>Recommended Remediation Playbook
+          </h3>
+<ol id="so-playbook" class="list-decimal list-inside space-y-2 text-body-md text-on-surface-variant">
+<li><strong class="text-on-surface">Isolate Endpoint immediately</strong> to prevent lateral movement across VLAN 4.</li>
+<li><strong class="text-on-surface">Kill Process Tree</strong> associated with PID 4912 and wipe volatile memory dump.</li>
+<li><strong class="text-on-surface">Block Destination IP</strong> 185.220.101.5 at the perimeter firewall / DNS sinkhole.</li>
+<li><strong class="text-on-surface">Initiate Password Reset</strong> for compromised user account <span class="font-code-mono text-secondary">jsmith@enterprise.local</span>.</li>
+</ol>
+</div>
+</div>
+<!-- Slide-Over Footer -->
+<div class="p-6 bg-surface-container/50 border-t border-outline-variant/20 flex items-center justify-between">
+<div class="flex items-center gap-3"><span class="text-body-sm text-on-surface-variant">Assigned Analyst: <strong id="so-assignee" class="text-on-surface">Unassigned</strong></span>
+<button id="so-assign" class="hidden px-3 py-1.5 rounded-xl bg-surface-container text-secondary hover:bg-surface-container-high text-label-md transition-all">Assign to me</button></div>
+<button class="px-6 py-2 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-semibold transition-all text-label-md" onclick="closeSlideOver()">
+          Close Inspection
+        </button>
+</div>
+</div>
+</div>
+<!-- Interactive Script -->
+<script>
+    function openSlideOver(alertId) {
+      const slideOver = document.getElementById('slideOver');
+      const panel = document.getElementById('slideOverPanel');
+      slideOver.classList.remove('pointer-events-none', 'opacity-0');
+      panel.classList.remove('translate-x-full');
+    }
+
+    function closeSlideOver() {
+      const slideOver = document.getElementById('slideOver');
+      const panel = document.getElementById('slideOverPanel');
+      slideOver.classList.add('pointer-events-none', 'opacity-0');
+      panel.classList.add('translate-x-full');
+    }
+
+    function triggerAction(actionName) {
+      alert('Action executed successfully: ' + actionName + ' for alert ALT-9821');
+      closeSlideOver();
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text);
+      alert('Copied to clipboard: ' + text);
+    }
+
+    function openBulkActionModal() {
+      alert('Bulk isolation protocol initiated for selected security alerts.');
+    }
+  </script>
+</div></main></div><script src="cs-api.js"></script><script src="cs-alerts.js"></script><script id="cs-nav">
+(function(){
+ var b=document.body;
+ var btn=document.createElement('button');btn.className='cs-burger';btn.setAttribute('aria-label','Toggle navigation');
+ btn.innerHTML='<span class="material-symbols-outlined">menu</span>';
+ var sc=document.createElement('div');sc.className='cs-scrim';
+ b.appendChild(btn);b.appendChild(sc);
+ btn.onclick=function(){var o=b.classList.toggle('cs-nav-open');btn.firstChild.textContent=o?'close':'menu'};sc.onclick=function(){b.classList.remove('cs-nav-open');btn.firstChild.textContent='menu'};
+ document.addEventListener('keydown',function(e){if(e.key==='Escape')b.classList.remove('cs-nav-open')});
+ document.querySelectorAll('aside img').forEach(function(i){var f=function(){
+  var s=document.createElement('span');s.className='material-symbols-outlined text-secondary-container';s.style.fontVariationSettings="'FILL' 1";s.textContent='shield';i.replaceWith(s)};
+  i.addEventListener('error',f);if(i.complete&&i.naturalWidth===0)f();});
+})();
+</script></body></html>

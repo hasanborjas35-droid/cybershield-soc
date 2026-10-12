@@ -1,0 +1,35 @@
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: cybershield-sql
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: "Developer"
+      MSSQL_SA_PASSWORD: "${SA_PASSWORD:-CHANGE_ME_Strong!Pass1}"
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqldata:/var/opt/mssql
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/mssql-tools18/bin/sqlcmd -C -S localhost -U sa -P \"$$MSSQL_SA_PASSWORD\" -Q 'SELECT 1' || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build: ./CyberShield.Api
+    container_name: cybershield-api
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_URLS: "http://+:8080"
+      ConnectionStrings__Default: "Server=sqlserver,1433;Database=CyberShield;User Id=sa;Password=${SA_PASSWORD:-CHANGE_ME_Strong!Pass1};TrustServerCertificate=True;Encrypt=False"
+      Jwt__Key: "${JWT_KEY:?set JWT_KEY (min 32 chars)}"
+      Cors__AllowedOrigins__0: "${FRONTEND_ORIGIN:-https://cybershield-g9xe9c4u.manus.space}"
+      Database__SeedPassword: "${SEED_PASSWORD:-ChangeMe!123}"
+    ports:
+      - "5080:8080"
+
+volumes:
+  sqldata:

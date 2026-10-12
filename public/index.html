@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><title>Dashboard | CyberShield SOC</title><meta name="description" content="CyberShield SOC — Dashboard. Real-time cybersecurity monitoring and threat intelligence."><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary-fixed-variant": "#004398", "tertiary-fixed": "#eaddff", "surface-container-lowest": "#0b0e16", "on-primary": "#002d6c", "on-tertiary": "#3f008e", "inverse-surface": "#e0e2ed", "surface-container": "#1c1f28", "tertiary": "#d2bbff", "on-tertiary-container": "#36007d", "surface-container-high": "#272a32", "tertiary-fixed-dim": "#d2bbff", "background": "#10131b", "on-tertiary-fixed": "#25005a", "on-surface": "#e0e2ed", "on-tertiary-fixed-variant": "#5a00c6", "on-secondary-fixed-variant": "#004e5d", "inverse-primary": "#0059c7", "secondary-container": "#00d9ff", "surface-container-highest": "#32353d", "on-secondary-fixed": "#001f26", "secondary-fixed": "#aeecff", "on-primary-container": "#00275f", "primary-fixed": "#d9e2ff", "surface-dim": "#10131b", "on-error": "#690005", "outline-variant": "#414755", "on-secondary-container": "#005b6c", "tertiary-container": "#a476ff", "on-error-container": "#ffdad6", "inverse-on-surface": "#2d3039", "surface-container-low": "#181b23", "surface-tint": "#afc6ff", "on-surface-variant": "#c1c6d7", "on-background": "#e0e2ed", "outline": "#8b90a0", "surface-variant": "#32353d", "primary-fixed-dim": "#afc6ff", "error-container": "#93000a", "error": "#ffb4ab", "primary": "#afc6ff", "primary-container": "#528dff", "on-secondary": "#003641", "on-primary-fixed": "#001a43", "surface": "#10131b", "secondary-fixed-dim": "#00d9ff", "secondary": "#aeecff", "surface-bright": "#363942" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-xs": "0.25rem", "margin": "1.5rem", "space-2xl": "3rem", "space-md": "1rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "space-xl": "2rem", "gutter": "1rem" }, "fontFamily": { "headline-md": ["Space Grotesk"], "label-lg": ["Space Grotesk"], "body-sm": ["Inter"], "headline-lg": ["Space Grotesk"], "headline-xl": ["Space Grotesk"], "body-lg": ["Inter"], "headline-sm": ["Space Grotesk"], "body-md": ["Inter"], "code-mono": ["Space Grotesk"], "label-md": ["Space Grotesk"] }, "fontSize": { "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "500" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "code-mono": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }] } } } }</script><style id="cs-responsive">
+.cs-burger{display:none}
+@media (max-width:1023px){
+ aside.fixed.left-0{transform:translateX(-100%);transition:transform .25s ease;width:18rem}
+ body.cs-nav-open aside.fixed.left-0{transform:translateX(0)}
+ .pl-72{padding-left:0!important}
+ header.fixed.left-72{left:0!important;padding-left:4rem!important;padding-right:1rem!important}
+ .cs-burger{display:flex;position:fixed;top:.75rem;left:.75rem;z-index:60;width:2.5rem;height:2.5rem;align-items:center;justify-content:center;border-radius:.75rem;background:rgba(11,14,22,.9);border:1px solid rgba(0,217,255,.25);color:#e0e2ed;cursor:pointer}
+ .cs-scrim{position:fixed;inset:0;background:rgba(5,7,13,.6);z-index:45;display:none}
+ body.cs-nav-open .cs-scrim{display:block}
+ body.cs-nav-open .cs-burger{left:18.75rem}
+ header.fixed .w-96{width:100%!important}
+ main{padding:1rem!important}
+ table{display:block;overflow-x:auto;white-space:nowrap}
+}
+@media (max-width:640px){ header.fixed [class*="border-l"]{padding-left:.5rem!important} }
+</style></head><body class="bg-surface font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest/80 backdrop-blur-xl z-50 flex flex-col py-6 shadow-[0_0_20px_rgba(22,119,255,0.05)]"><div class="px-6 mb-8 flex items-center gap-3"><img alt="CyberShield Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Wecbnkqc8L1mZDLKv3OPQlZAmAa1rVSwrZTCRMmLzKmBGqxqcIDa6KKVuWl7lM7N_plRgAn8veaFzPOi9II4ubOW_mm-b1x7ll0ZNSxF0avhmxYTBoFwmcQ6XEITDHuU0yapBt-4T4B7oVai1S6Qti8U3BZ3gmIGtlTrgbdrX8NAohYX1x94HIHHLqgJCWZxzpG0HBAgPz81hZTMJV-3M1yyryPhXpeYExOtOS-0Cr"/><span class="font-headline-md text-headline-sm tracking-tight text-primary">CyberShield</span></div><nav class="flex-1 px-4 space-y-space-xs overflow-y-auto" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_0_15px_rgba(82,141,255,0.3)]"><a aria-current="page" class="flex items-center px-4 py-3 rounded-xl transition-all bg-primary-container text-on-primary-container font-semibold shadow-[0_0_15px_rgba(82,141,255,0.3)]" data-path="dashboard" href="index.html"><span class="material-symbols-outlined mr-3">dashboard</span>Dashboard</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="threats" href="threats.html"><span class="material-symbols-outlined mr-3">crisis_alert</span>Threats</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="alerts" href="alerts.html"><span class="material-symbols-outlined mr-3">notifications_active</span>Alerts</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="network" href="network.html"><span class="material-symbols-outlined mr-3">hub</span>Network</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="devices" href="devices.html"><span class="material-symbols-outlined mr-3">dns</span>Devices</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="incidents" href="incidents.html"><span class="material-symbols-outlined mr-3">report</span>Incidents</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="reports" href="reports.html"><span class="material-symbols-outlined mr-3">analytics</span>Reports</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="users" href="users.html"><span class="material-symbols-outlined mr-3">group</span>Users</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="settings" href="settings.html"><span class="material-symbols-outlined mr-3">settings</span>Settings</a></nav><div class="px-6 pt-4 border-t border-outline-variant/20 mt-auto"><div class="flex items-center gap-3 p-3 rounded-xl bg-surface-container/50 border border-secondary/20"><div class="w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_8px_rgba(0,217,255,0.8)] animate-pulse"><div></div></div><div class="flex flex-col"><span class="text-label-md text-on-surface font-semibold">SYSTEM OPERATIONAL</span><span class="text-body-sm text-on-surface-variant">All nodes reporting 99.9%</span></div></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/80 backdrop-blur-xl z-40 flex items-center justify-between px-8"><div class="flex items-center gap-4 w-96"><div class="relative w-full"><span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-sm">search</span><input class="w-full bg-surface-container-lowest text-on-surface pl-10 pr-4 py-2 rounded-xl text-body-md border border-outline-variant/30 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary" placeholder="Search telemetry, hashes, IPs..." type="text"/></div></div><div class="flex items-center gap-6"><div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container border border-secondary/30 shadow-[0_0_10px_rgba(0,217,255,0.1)]"><span class="material-symbols-outlined text-secondary text-sm">shield</span><span class="text-label-md text-secondary font-semibold">SECURE STATE</span></div><button class="relative text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined">notifications</span><span class="absolute top-0 right-0 w-2 h-2 rounded-full bg-error"></span></button><div class="flex items-center gap-3 pl-4 border-l border-outline-variant/30"><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-secondary/50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAio-YJa7LbB5tjKAFFWdqAcXIhl_AofPC0pEsMPpzK7C9xJOipKHmZKTSgPUQaK8h9QiGrGvgf7fTukk1Cc9e7MFfFPul34pGSwYaXk3pMdW0pgXM3zcg9O0_rqPtzz-nqZ5Q8sy_xSF-dNhYkTuIS6Zch6a03SE2VPZXOEdrH_XyT4nPCP7Q6eQnM06L7bFoxSpue8M69qMfqFgn6t1nrlk7pzx_Ij7se9-DftU"/></div></div></header><main class="relative pt-16 bg-surface min-h-screen p-space-lg"><div class="flex flex-col w-full space-y-space-xl pb-12">
+<!-- Top Context Header -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4 bg-surface-container/40 p-space-xl rounded-xl shadow-[0_0_30px_rgba(22,119,255,0.05)] backdrop-blur-xl">
+<div class="flex flex-col space-y-space-xs">
+<div class="flex items-center gap-3">
+<div class="flex items-center gap-2 px-3 py-1 rounded-full bg-secondary-container/20 text-secondary shadow-[0_0_12px_rgba(0,217,255,0.3)]">
+<span class="w-2 h-2 rounded-full bg-secondary animate-ping"></span>
+<span class="font-label-lg text-label-lg tracking-wider text-secondary">LIVE MONITORING</span>
+</div>
+<span class="font-code-mono text-code-mono text-on-surface-variant">NODE-US-EAST-01</span>
+</div>
+<h1 class="font-headline-xl text-headline-xl text-on-surface tracking-tight mt-2">SECURITY OPERATIONS CENTER</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Real-time cybersecurity monitoring and threat intelligence telemetry.</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-surface-container hover:bg-surface-container-high text-on-surface font-label-lg transition-all shadow-sm">
+<span class="material-symbols-outlined text-secondary">download</span>
+        Export Report
+      </button>
+<button class="flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary-container text-on-primary-container font-label-lg hover:brightness-110 transition-all shadow-[0_0_15px_rgba(82,141,255,0.4)]">
+<span class="material-symbols-outlined">shield_locked</span>
+        Lockdown Mode
+      </button>
+</div>
+</div>
+<!-- Primary Metrics & Score Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Circular Security Score Widget -->
+<div class="lg:col-span-4 bg-surface-container/60 backdrop-blur-xl p-space-xl rounded-xl flex flex-col justify-between shadow-[0_0_20px_rgba(0,217,255,0.08)] relative overflow-hidden">
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex items-center justify-between mb-6">
+<span class="font-label-lg text-label-lg text-on-surface-variant uppercase tracking-wider">Posture Score</span>
+<span class="material-symbols-outlined text-secondary">verified_user</span>
+</div>
+<div class="flex flex-col items-center justify-center my-4 relative">
+<!-- SVG Gauge -->
+<div class="relative w-48 h-48 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 120 120">
+<circle class="text-surface-container-high" cx="60" cy="60" fill="none" r="50" stroke="currentColor" stroke-width="8"></circle>
+<circle class="text-secondary" cx="60" cy="60" fill="none" r="50" id="cs-score-circle" stroke-dasharray="314" stroke-dashoffset="40.82" stroke-linecap="round" stroke-width="8" style="filter: drop-shadow(0 0 8px rgba(0,217,255,0.6));"></circle>
+</svg>
+<div class="absolute flex flex-col items-center text-center">
+<span class="font-headline-xl text-headline-xl text-on-surface tracking-tight" id="cs-score-value">87%</span>
+<span class="font-body-sm text-body-sm text-secondary font-semibold" id="cs-score-trend">+4.2% vs last week</span>
+</div>
+</div>
+</div>
+<div class="mt-4 pt-4 grid grid-cols-2 gap-4 text-center">
+<div class="bg-surface-container-low p-3 rounded-lg">
+<span class="font-body-sm text-on-surface-variant block">Vulnerabilities</span>
+<span class="font-headline-sm text-headline-sm text-on-surface mt-1 block" id="cs-vuln-count">3 Patches</span>
+</div>
+<div class="bg-surface-container-low p-3 rounded-lg">
+<span class="font-body-sm text-on-surface-variant block">Compliance</span>
+<span class="font-headline-sm text-headline-sm text-secondary mt-1 block" id="cs-compliance">98.4%</span>
+</div>
+</div>
+</div>
+<!-- Four Premium Stats Cards Grid -->
+<div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-6">
+<!-- Card 1: Active Threats -->
+<div class="bg-surface-container/60 backdrop-blur-xl p-space-lg rounded-xl flex flex-col justify-between shadow-sm hover:shadow-[0_0_15px_rgba(22,119,255,0.15)] transition-all">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface-variant tracking-wider">ACTIVE THREATS</span>
+<div class="w-8 h-8 rounded-lg bg-error-container/40 text-error flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">crisis_alert</span>
+</div>
+</div>
+<div class="my-4">
+<div class="flex items-baseline gap-3">
+<span class="font-headline-xl text-headline-xl text-on-surface" id="cs-active-threats">24</span>
+<span class="font-body-sm text-body-sm text-error font-semibold flex items-center" id="cs-threats-trend">+2 vs yesterday</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden">
+<div class="bg-error h-full rounded-full" style="width: 65%;"></div>
+</div>
+</div>
+<!-- Card 2: Critical Alerts -->
+<div class="bg-surface-container/60 backdrop-blur-xl p-space-lg rounded-xl flex flex-col justify-between shadow-sm hover:shadow-[0_0_15px_rgba(255,180,171,0.15)] transition-all">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface-variant tracking-wider">CRITICAL ALERTS</span>
+<span class="px-2.5 py-0.5 rounded-full bg-error text-on-error font-label-md">URGENT</span>
+</div>
+<div class="my-4">
+<div class="flex items-baseline gap-3">
+<span class="font-headline-xl text-headline-xl text-on-surface" id="cs-critical-alerts">7</span>
+<span class="font-body-sm text-body-sm text-error font-semibold">Requires Action</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden">
+<div class="bg-error h-full rounded-full animate-pulse" style="width: 85%;"></div>
+</div>
+</div>
+<!-- Card 3: Protected Devices -->
+<div class="bg-surface-container/60 backdrop-blur-xl p-space-lg rounded-xl flex flex-col justify-between shadow-sm hover:shadow-[0_0_15px_rgba(0,217,255,0.15)] transition-all">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface-variant tracking-wider">PROTECTED DEVICES</span>
+<div class="w-8 h-8 rounded-lg bg-secondary-container/20 text-secondary flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">dns</span>
+</div>
+</div>
+<div class="my-4">
+<div class="flex items-baseline gap-3">
+<span class="font-headline-xl text-headline-xl text-on-surface" id="cs-protected-devices">148</span>
+<span class="font-body-sm text-body-sm text-secondary font-semibold" id="cs-device-health-pct">99.3% healthy</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden">
+<div class="bg-secondary h-full rounded-full" style="width: 99%;"></div>
+</div>
+</div>
+<!-- Card 4: Network Events -->
+<div class="bg-surface-container/60 backdrop-blur-xl p-space-lg rounded-xl flex flex-col justify-between shadow-sm hover:shadow-[0_0_15px_rgba(82,141,255,0.15)] transition-all">
+<div class="flex items-center justify-between">
+<span class="font-label-lg text-label-lg text-on-surface-variant tracking-wider">NETWORK EVENTS</span>
+<div class="w-8 h-8 rounded-lg bg-primary-container/20 text-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">hub</span>
+</div>
+</div>
+<div class="my-4">
+<div class="flex items-baseline gap-3">
+<span class="font-headline-xl text-headline-xl text-on-surface" id="cs-network-events">12,482</span>
+<span class="font-body-sm text-body-sm text-secondary font-semibold" id="cs-network-trend">+15% surge</span>
+</div>
+</div>
+<div class="w-full bg-surface-container-low h-1.5 rounded-full overflow-hidden">
+<div class="bg-primary h-full rounded-full" style="width: 78%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Charts Section: Area Chart & Donut Distribution -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+<!-- Threat Activity Area Chart -->
+<div class="lg:col-span-8 bg-surface-container/60 backdrop-blur-xl p-space-xl rounded-xl flex flex-col shadow-sm">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Threat Activity Telemetry</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Real-time packet inspection and threat vector mapping</p>
+</div>
+<div class="flex items-center bg-surface-container-low p-1 rounded-xl">
+<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary-container font-label-md shadow-sm transition-all">24H</button>
+<button class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md transition-all">7D</button>
+<button class="px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface font-label-md transition-all">30D</button>
+</div>
+</div>
+<!-- Legend -->
+<div class="flex items-center gap-6 mb-4">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="font-body-sm text-on-surface-variant">Threats Detected</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<span class="font-body-sm text-on-surface-variant">Threats Blocked</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-full bg-tertiary"></span>
+<span class="font-body-sm text-on-surface-variant">Suspicious Activity</span>
+</div>
+</div>
+<!-- SVG Area Chart -->
+<div class="w-full h-64 relative flex items-end">
+<svg class="w-full h-full overflow-visible" preserveaspectratio="none" viewbox="0 0 800 200">
+<defs>
+<lineargradient id="primaryGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#afc6ff" stop-opacity="0.4"></stop>
+<stop offset="100%" stop-color="#afc6ff" stop-opacity="0.0"></stop>
+</lineargradient>
+<lineargradient id="secondaryGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#00d9ff" stop-opacity="0.4"></stop>
+<stop offset="100%" stop-color="#00d9ff" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<!-- Grid lines -->
+<line stroke="rgba(65,71,85,0.2)" stroke-dasharray="4" x1="0" x2="800" y1="0" y2="0"></line>
+<line stroke="rgba(65,71,85,0.2)" stroke-dasharray="4" x1="0" x2="800" y1="50" y2="50"></line>
+<line stroke="rgba(65,71,85,0.2)" stroke-dasharray="4" x1="0" x2="800" y1="100" y2="100"></line>
+<line stroke="rgba(65,71,85,0.2)" stroke-dasharray="4" x1="0" x2="800" y1="150" y2="150"></line>
+<line stroke="rgba(65,71,85,0.2)" x1="0" x2="800" y1="200" y2="200"></line>
+<!-- Area 1 -->
+<path d="M0,140 Q100,80 200,110 T400,60 T600,90 T800,30 L800,200 L0,200 Z" fill="url(#primaryGrad)"></path>
+<path d="M0,140 Q100,80 200,110 T400,60 T600,90 T800,30" fill="none" stroke="#afc6ff" stroke-width="2.5" style="filter: drop-shadow(0 0 6px rgba(175,198,255,0.5));"></path>
+<!-- Area 2 -->
+<path d="M0,170 Q100,120 200,140 T400,100 T600,130 T800,70 L800,200 L0,200 Z" fill="url(#secondaryGrad)"></path>
+<path d="M0,170 Q100,120 200,140 T400,100 T600,130 T800,70" fill="none" stroke="#00d9ff" stroke-width="2" style="filter: drop-shadow(0 0 6px rgba(0,217,255,0.5));"></path>
+</svg>
+</div>
+<div class="flex justify-between text-body-sm text-on-surface-variant mt-3 px-1">
+<span>00:00 UTC</span>
+<span>04:00 UTC</span>
+<span>08:00 UTC</span>
+<span>12:00 UTC</span>
+<span>16:00 UTC</span>
+<span>20:00 UTC</span>
+</div>
+</div>
+<!-- Threat Distribution Donut Chart -->
+<div class="lg:col-span-4 bg-surface-container/60 backdrop-blur-xl p-space-xl rounded-xl flex flex-col justify-between shadow-sm">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Threat Severity</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Distribution across telemetry vectors</p>
+</div>
+<!-- Donut Mock via SVG -->
+<div class="flex items-center justify-center my-6">
+<div class="relative w-40 h-40 flex items-center justify-center">
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 100 100">
+<circle class="text-surface-container-high" cx="50" cy="50" fill="none" r="40" stroke="currentColor" stroke-width="12"></circle>
+<!-- Critical segment -->
+<circle class="text-error" cx="50" cy="50" fill="none" id="donut-critical" r="40" stroke-dasharray="251.2" stroke-dashoffset="188" stroke-linecap="round" stroke-width="12"></circle>
+<!-- High segment -->
+<circle class="text-tertiary" cx="50" cy="50" fill="none" id="donut-high" r="40" stroke-dasharray="251.2" stroke-dashoffset="160" stroke-width="12"></circle>
+<!-- Medium segment -->
+<circle class="text-secondary" cx="50" cy="50" fill="none" id="donut-medium" r="40" stroke-dasharray="251.2" stroke-dashoffset="80" stroke-width="12"></circle>
+</svg>
+<div class="absolute flex flex-col items-center">
+<span class="font-headline-md text-headline-md text-on-surface" id="cs-donut-total">1,024</span>
+<span class="font-body-sm text-on-surface-variant">Total Vectors</span>
+</div>
+</div>
+</div>
+<!-- Donut Legend -->
+<div class="space-y-space-sm">
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-error"></span>
+<span class="text-on-surface">Critical</span>
+</div>
+<span class="font-code-mono text-on-surface-variant" id="cs-sev-critical-pct">32% (328)</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-tertiary"></span>
+<span class="text-on-surface">High</span>
+</div>
+<span class="font-code-mono text-on-surface-variant" id="cs-sev-high-pct">45% (460)</span>
+</div>
+<div class="flex items-center justify-between text-body-sm">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary"></span>
+<span class="text-on-surface">Medium / Low</span>
+</div>
+<span class="font-code-mono text-on-surface-variant" id="cs-sev-medium-pct">23% (236)</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Recent Alerts Data Table -->
+<div class="bg-surface-container/60 backdrop-blur-xl rounded-xl p-space-xl shadow-sm flex flex-col">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface">Recent Security Alerts</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Real-time incident stream requiring validation or remediation</p>
+</div>
+<div class="flex items-center gap-3">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2 text-on-surface-variant text-sm">filter_list</span>
+<input class="bg-surface-container-low text-on-surface pl-9 pr-4 py-1.5 rounded-xl text-body-sm outline-none focus:ring-1 focus:ring-secondary" placeholder="Filter alerts..." type="text"/>
+</div>
+</div>
+</div>
+<!-- Table Container -->
+<div class="overflow-x-auto w-full">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-outline-variant/20 text-label-md text-on-surface-variant uppercase tracking-wider">
+<th class="py-3 px-4 font-semibold">Severity</th>
+<th class="py-3 px-4 font-semibold">Source IP</th>
+<th class="py-3 px-4 font-semibold">Target Asset</th>
+<th class="py-3 px-4 font-semibold">Status</th>
+<th class="py-3 px-4 font-semibold">Timestamp</th>
+<th class="py-3 px-4 font-semibold text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10 font-body-md text-on-surface" id="cs-recent-alerts-body">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-4 px-4">
+<span class="px-2.5 py-1 rounded-full bg-error-container/30 text-error font-label-md border border-error/30">CRITICAL</span>
+</td>
+<td class="py-4 px-4 font-code-mono text-code-mono text-secondary">185.220.101.5</td>
+<td class="py-4 px-4">prod-gateway-us-east</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-error animate-pulse"></span>
+<span>Active Attack</span>
+</div>
+</td>
+<td class="py-4 px-4 text-on-surface-variant font-code-mono text-body-sm">2 mins ago</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="px-3 py-1 rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface text-body-sm transition-all">Inspect</button>
+<button class="px-3 py-1 rounded-lg bg-error-container text-on-error-container text-body-sm transition-all">Isolate</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-4 px-4">
+<span class="px-2.5 py-1 rounded-full bg-tertiary-container/20 text-tertiary font-label-md border border-tertiary/30">HIGH</span>
+</td>
+<td class="py-4 px-4 font-code-mono text-code-mono text-secondary">45.33.22.156</td>
+<td class="py-4 px-4">auth-service-node-4</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-tertiary"></span>
+<span>Mitigating</span>
+</div>
+</td>
+<td class="py-4 px-4 text-on-surface-variant font-code-mono text-body-sm">14 mins ago</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="px-3 py-1 rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface text-body-sm transition-all">Inspect</button>
+<button class="px-3 py-1 rounded-lg bg-surface-container-high text-on-surface text-body-sm transition-all">Dismiss</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-4 px-4">
+<span class="px-2.5 py-1 rounded-full bg-secondary-container/20 text-secondary font-label-md border border-secondary/30">MEDIUM</span>
+</td>
+<td class="py-4 px-4 font-code-mono text-code-mono text-secondary">192.168.1.104</td>
+<td class="py-4 px-4">internal-workstation-9</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<span>Quarantined</span>
+</div>
+</td>
+<td class="py-4 px-4 text-on-surface-variant font-code-mono text-body-sm">41 mins ago</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="px-3 py-1 rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface text-body-sm transition-all">Inspect</button>
+<button class="px-3 py-1 rounded-lg bg-surface-container-high text-on-surface text-body-sm transition-all">Review</button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-4 px-4">
+<span class="px-2.5 py-1 rounded-full bg-surface-container-high text-on-surface-variant font-label-md border border-outline-variant/30">LOW</span>
+</td>
+<td class="py-4 px-4 font-code-mono text-code-mono text-secondary">10.0.4.12</td>
+<td class="py-4 px-4">db-cluster-replica-2</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-outline"></span>
+<span>Resolved</span>
+</div>
+</td>
+<td class="py-4 px-4 text-on-surface-variant font-code-mono text-body-sm">2 hours ago</td>
+<td class="py-4 px-4 text-right">
+<div class="flex items-center justify-end gap-2">
+<button class="px-3 py-1 rounded-lg bg-surface-container-high hover:bg-primary-container hover:text-on-primary-container text-on-surface text-body-sm transition-all">Inspect</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Table Footer / Pagination -->
+<div class="flex items-center justify-between pt-6 mt-4 border-t border-outline-variant/10 text-body-sm text-on-surface-variant">
+<span>Showing 4 of 148 active telemetry entries</span>
+<div class="flex items-center gap-2">
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface transition-all">Previous</button>
+<button class="px-3 py-1.5 rounded-lg bg-primary-container text-on-primary-container transition-all">1</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface transition-all">2</button>
+<button class="px-3 py-1.5 rounded-lg bg-surface-container-low hover:bg-surface-container-high text-on-surface transition-all">Next</button>
+</div>
+</div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     Windows Endpoint Monitoring — Live Agent Panel
+     Populated by cs-dashboard.js from GET /api/dashboard/agent-status
+═══════════════════════════════════════════════════════════ -->
+<div class="mt-8">
+<div class="flex items-center justify-between mb-4">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings:'FILL' 1">sensors</span>
+<h2 class="text-headline-md text-on-surface font-headline-md">Live Endpoint Monitoring</h2>
+<span class="px-2.5 py-0.5 rounded-full bg-secondary/10 text-secondary border border-secondary/20 text-label-md font-semibold">REAL DATA</span>
+</div>
+<a href="devices.html" class="text-secondary text-body-sm hover:underline flex items-center gap-1">
+All Devices <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<div id="cs-agent-panel" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+<!-- Injected by cs-dashboard.js -->
+<div class="col-span-full flex items-center justify-center py-8 text-on-surface-variant gap-3">
+<span class="material-symbols-outlined animate-spin">refresh</span>
+<span class="text-body-md">Checking for agents...</span>
+</div>
+</div>
+</div>
+
+</div></main></div><script src="cs-api.js"></script><script src="cs-dashboard.js"></script><script id="cs-nav">
+(function(){
+ var b=document.body;
+ var btn=document.createElement('button');btn.className='cs-burger';btn.setAttribute('aria-label','Toggle navigation');
+ btn.innerHTML='<span class="material-symbols-outlined">menu</span>';
+ var sc=document.createElement('div');sc.className='cs-scrim';
+ b.appendChild(btn);b.appendChild(sc);
+ btn.onclick=function(){var o=b.classList.toggle('cs-nav-open');btn.firstChild.textContent=o?'close':'menu'};sc.onclick=function(){b.classList.remove('cs-nav-open');btn.firstChild.textContent='menu'};
+ document.addEventListener('keydown',function(e){if(e.key==='Escape')b.classList.remove('cs-nav-open')});
+ document.querySelectorAll('aside img').forEach(function(i){var f=function(){
+  var s=document.createElement('span');s.className='material-symbols-outlined text-secondary-container';s.style.fontVariationSettings="'FILL' 1";s.textContent='shield';i.replaceWith(s)};
+  i.addEventListener('error',f);if(i.complete&&i.naturalWidth===0)f();});
+})();
+</script></body></html>

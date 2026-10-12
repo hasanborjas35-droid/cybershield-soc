@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RollForward>Major</RollForward>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>CyberShield.Agent</RootNamespace>
+    <AssemblyName>CyberShield.Agent</AssemblyName>
+    <UserSecretsId>cybershield-agent-secrets</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Hosting infrastructure for Worker Service -->
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.*" />
+    <!-- Windows Service support -->
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="8.*" />
+    <!-- HTTP client for sending telemetry to the API -->
+    <PackageReference Include="Microsoft.Extensions.Http" Version="8.*" />
+    <!-- Windows-specific performance counters and WMI -->
+    <PackageReference Include="System.Diagnostics.PerformanceCounter" Version="8.*" />
+    <PackageReference Include="System.Management" Version="8.*" />
+  </ItemGroup>
+
+</Project>

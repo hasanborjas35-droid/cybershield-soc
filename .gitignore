@@ -1,0 +1,21 @@
+# Build output
+bin/
+obj/
+publish/
+
+# IDE
+.vs/
+*.user
+.vscode/
+
+# Secrets (never commit these)
+appsettings.Development.json
+**/Properties/launchSettings.json
+*.env
+.env
+
+# Agent ID (unique per machine)
+backend/CyberShield.Agent/agent-id.txt
+
+# Logs
+*.log

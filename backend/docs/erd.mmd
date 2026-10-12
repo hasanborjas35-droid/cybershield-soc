@@ -1,0 +1,84 @@
+erDiagram
+    Users ||--o{ UserPermissions : has
+    Users ||--o{ Alerts : "assigned to"
+    Users ||--o{ Incidents : "assigned to"
+    Devices ||--o{ Alerts : "involved in"
+    Devices ||--o{ Incidents : "affected"
+    Threats ||--o{ Alerts : "classified as"
+    Incidents ||--o{ Alerts : groups
+    Incidents ||--o{ IncidentTimeline : has
+    Incidents ||--o{ IncidentNotes : has
+    Alerts ||--o{ AlertIocs : has
+
+    Users {
+        int Id PK
+        nvarchar FullName
+        nvarchar Email UK
+        nvarchar PasswordHash
+        nvarchar Role
+        nvarchar Status
+        bit MfaEnabled
+        datetime2 LastActiveAt
+    }
+    UserPermissions {
+        int Id PK
+        int UserId FK
+        nvarchar Code
+    }
+    Devices {
+        int Id PK
+        nvarchar Name UK
+        nvarchar IpAddress
+        nvarchar OperatingSystem
+        nvarchar RiskLevel
+        nvarchar Status
+        datetime2 LastSeenAt
+    }
+    Threats {
+        int Id PK
+        nvarchar Category
+        nvarchar Severity
+        int EventCount
+        decimal TrendPercent
+        nvarchar SourceAsn
+        nvarchar Status
+    }
+    Alerts {
+        int Id PK
+        nvarchar Code UK
+        nvarchar Signature
+        nvarchar Severity
+        nvarchar Status
+        int DeviceId FK
+        int ThreatId FK
+        int IncidentId FK
+        int AssignedToUserId FK
+    }
+    AlertIocs {
+        int Id PK
+        int AlertId FK
+        nvarchar Type
+        nvarchar Value
+    }
+    Incidents {
+        int Id PK
+        nvarchar Code UK
+        nvarchar Title
+        nvarchar Severity
+        nvarchar Status
+        int AssignedToUserId FK
+        int AffectedDeviceId FK
+        datetime2 ResolvedAt
+    }
+    IncidentTimeline {
+        int Id PK
+        int IncidentId FK
+        datetime2 OccurredAt
+        nvarchar Title
+    }
+    IncidentNotes {
+        int Id PK
+        int IncidentId FK
+        nvarchar AuthorName
+        nvarchar Body
+    }

@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><title>Incident Management | CyberShield SOC</title><meta name="description" content="CyberShield SOC — Incident Management. Real-time cybersecurity monitoring and threat intelligence."><link rel="icon" href="/favicon.svg" type="image/svg+xml"><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><meta content="web_dashboard" name="shell-type"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { "colors": { "on-primary-fixed-variant": "#004398", "tertiary-fixed": "#eaddff", "surface-container-lowest": "#0b0e16", "on-primary": "#002d6c", "on-tertiary": "#3f008e", "inverse-surface": "#e0e2ed", "surface-container": "#1c1f28", "tertiary": "#d2bbff", "on-tertiary-container": "#36007d", "surface-container-high": "#272a32", "tertiary-fixed-dim": "#d2bbff", "background": "#10131b", "on-tertiary-fixed": "#25005a", "on-surface": "#e0e2ed", "on-tertiary-fixed-variant": "#5a00c6", "on-secondary-fixed-variant": "#004e5d", "inverse-primary": "#0059c7", "secondary-container": "#00d9ff", "surface-container-highest": "#32353d", "on-secondary-fixed": "#001f26", "secondary-fixed": "#aeecff", "on-primary-container": "#00275f", "primary-fixed": "#d9e2ff", "surface-dim": "#10131b", "on-error": "#690005", "outline-variant": "#414755", "on-secondary-container": "#005b6c", "tertiary-container": "#a476ff", "on-error-container": "#ffdad6", "inverse-on-surface": "#2d3039", "surface-container-low": "#181b23", "surface-tint": "#afc6ff", "on-surface-variant": "#c1c6d7", "on-background": "#e0e2ed", "outline": "#8b90a0", "surface-variant": "#32353d", "primary-fixed-dim": "#afc6ff", "error-container": "#93000a", "error": "#ffb4ab", "primary": "#afc6ff", "primary-container": "#528dff", "on-secondary": "#003641", "on-primary-fixed": "#001a43", "surface": "#10131b", "secondary-fixed-dim": "#00d9ff", "secondary": "#aeecff", "surface-bright": "#363942" }, "borderRadius": { "DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem" }, "spacing": { "space-xs": "0.25rem", "margin": "1.5rem", "space-2xl": "3rem", "space-md": "1rem", "space-sm": "0.5rem", "space-lg": "1.5rem", "space-xl": "2rem", "gutter": "1rem" }, "fontFamily": { "headline-md": ["Space Grotesk"], "label-lg": ["Space Grotesk"], "body-sm": ["Inter"], "headline-lg": ["Space Grotesk"], "headline-xl": ["Space Grotesk"], "body-lg": ["Inter"], "headline-sm": ["Space Grotesk"], "body-md": ["Inter"], "code-mono": ["Space Grotesk"], "label-md": ["Space Grotesk"] }, "fontSize": { "headline-md": ["24px", { "lineHeight": "32px", "fontWeight": "600" }], "label-lg": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }], "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }], "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.01em", "fontWeight": "600" }], "headline-xl": ["40px", { "lineHeight": "48px", "letterSpacing": "-0.02em", "fontWeight": "700" }], "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }], "headline-sm": ["18px", { "lineHeight": "24px", "fontWeight": "500" }], "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }], "code-mono": ["13px", { "lineHeight": "18px", "letterSpacing": "0.02em", "fontWeight": "400" }], "label-md": ["12px", { "lineHeight": "16px", "letterSpacing": "0.05em", "fontWeight": "500" }] } } } }</script><style id="cs-responsive">
+.cs-burger{display:none}
+@media (max-width:1023px){
+ aside.fixed.left-0{transform:translateX(-100%);transition:transform .25s ease;width:18rem}
+ body.cs-nav-open aside.fixed.left-0{transform:translateX(0)}
+ .pl-72{padding-left:0!important}
+ header.fixed.left-72{left:0!important;padding-left:4rem!important;padding-right:1rem!important}
+ .cs-burger{display:flex;position:fixed;top:.75rem;left:.75rem;z-index:60;width:2.5rem;height:2.5rem;align-items:center;justify-content:center;border-radius:.75rem;background:rgba(11,14,22,.9);border:1px solid rgba(0,217,255,.25);color:#e0e2ed;cursor:pointer}
+ .cs-scrim{position:fixed;inset:0;background:rgba(5,7,13,.6);z-index:45;display:none}
+ body.cs-nav-open .cs-scrim{display:block}
+ body.cs-nav-open .cs-burger{left:18.75rem}
+ header.fixed .w-96{width:100%!important}
+ main{padding:1rem!important}
+ table{display:block;overflow-x:auto;white-space:nowrap}
+}
+@media (max-width:640px){ header.fixed [class*="border-l"]{padding-left:.5rem!important} }
+</style></head><body class="bg-surface font-body-md text-on-surface"><aside class="fixed left-0 top-0 h-full w-72 bg-surface-container-lowest/80 backdrop-blur-xl z-50 flex flex-col py-6 shadow-[0_0_20px_rgba(22,119,255,0.05)]"><div class="px-6 mb-8 flex items-center gap-3"><img alt="CyberShield Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1Wecbnkqc8L1mZDLKv3OPQlZAmAa1rVSwrZTCRMmLzKmBGqxqcIDa6KKVuWl7lM7N_plRgAn8veaFzPOi9II4ubOW_mm-b1x7ll0ZNSxF0avhmxYTBoFwmcQ6XEITDHuU0yapBt-4T4B7oVai1S6Qti8U3BZ3gmIGtlTrgbdrX8NAohYX1x94HIHHLqgJCWZxzpG0HBAgPz81hZTMJV-3M1yyryPhXpeYExOtOS-0Cr"/><span class="font-headline-md text-headline-sm tracking-tight text-primary">CyberShield</span></div><nav class="flex-1 px-4 space-y-space-xs overflow-y-auto" data-active-classes="bg-primary-container text-on-primary-container font-semibold shadow-[0_0_15px_rgba(82,141,255,0.3)]"><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="dashboard" href="index.html"><span class="material-symbols-outlined mr-3">dashboard</span>Dashboard</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="threats" href="threats.html"><span class="material-symbols-outlined mr-3">crisis_alert</span>Threats</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="alerts" href="alerts.html"><span class="material-symbols-outlined mr-3">notifications_active</span>Alerts</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="network" href="network.html"><span class="material-symbols-outlined mr-3">hub</span>Network</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="devices" href="devices.html"><span class="material-symbols-outlined mr-3">dns</span>Devices</a><a aria-current="page" class="flex items-center px-4 py-3 rounded-xl transition-all bg-primary-container text-on-primary-container font-semibold shadow-[0_0_15px_rgba(82,141,255,0.3)]" data-path="incidents" href="incidents.html"><span class="material-symbols-outlined mr-3">report</span>Incidents</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="reports" href="reports.html"><span class="material-symbols-outlined mr-3">analytics</span>Reports</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="users" href="users.html"><span class="material-symbols-outlined mr-3">group</span>Users</a><a class="flex items-center px-4 py-3 rounded-xl text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-all" data-path="settings" href="settings.html"><span class="material-symbols-outlined mr-3">settings</span>Settings</a></nav><div class="px-6 pt-4 border-t border-outline-variant/20 mt-auto"><div class="flex items-center gap-3 p-3 rounded-xl bg-surface-container/50 border border-secondary/20"><div class="w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_8px_rgba(0,217,255,0.8)] animate-pulse"><div></div></div><div class="flex flex-col"><span class="text-label-md text-on-surface font-semibold">SYSTEM OPERATIONAL</span><span class="text-body-sm text-on-surface-variant">All nodes reporting 99.9%</span></div></div></div></aside><div class="pl-72"><header class="fixed top-0 left-72 right-0 h-16 bg-surface/80 backdrop-blur-xl z-40 flex items-center justify-between px-8"><div class="flex items-center gap-4 w-96"><div class="relative w-full"><span class="material-symbols-outlined absolute left-3 top-2.5 text-on-surface-variant text-sm">search</span><input class="w-full bg-surface-container-lowest text-on-surface pl-10 pr-4 py-2 rounded-xl text-body-md border border-outline-variant/30 focus:outline-none focus:border-secondary focus:ring-1 focus:ring-secondary" placeholder="Search telemetry, hashes, IPs..." type="text"/></div></div><div class="flex items-center gap-6"><div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container border border-secondary/30 shadow-[0_0_10px_rgba(0,217,255,0.1)]"><span class="material-symbols-outlined text-secondary text-sm">shield</span><span class="text-label-md text-secondary font-semibold">SECURE STATE</span></div><button class="relative text-on-surface-variant hover:text-on-surface transition-colors"><span class="material-symbols-outlined">notifications</span><span class="absolute top-0 right-0 w-2 h-2 rounded-full bg-error"></span></button><div class="flex items-center gap-3 pl-4 border-l border-outline-variant/30"><img alt="Profile" class="w-8 h-8 rounded-full object-cover border border-secondary/50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAio-YJa7LbB5tjKAFFWdqAcXIhl_AofPC0pEsMPpzK7C9xJOipKHmZKTSgPUQaK8h9QiGrGvgf7fTukk1Cc9e7MFfFPul34pGSwYaXk3pMdW0pgXM3zcg9O0_rqPtzz-nqZ5Q8sy_xSF-dNhYkTuIS6Zch6a03SE2VPZXOEdrH_XyT4nPCP7Q6eQnM06L7bFoxSpue8M69qMfqFgn6t1nrlk7pzx_Ij7se9-DftU"/></div></div></header><main class="relative pt-16 bg-surface min-h-screen p-space-lg"><div class="flex flex-col w-full pb-16">
+<!-- Top Stats / Overview Bar -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
+<div class="bg-surface-container p-5 rounded-xl flex items-center justify-between relative overflow-hidden shadow-sm">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-primary/5 rounded-full blur-xl"></div>
+<div>
+<span class="text-label-md text-on-surface-variant uppercase tracking-wider">Active Incidents</span>
+<div class="text-headline-lg text-on-surface mt-1 font-headline-lg"><span id="cs-active-incidents">24</span><span class="text-body-md text-error ml-2 font-semibold" id="cs-inc-today">+3 today</span></div>
+</div>
+<div class="w-12 h-12 rounded-xl bg-primary-container/20 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-2xl">crisis_alert</span>
+</div>
+</div>
+<div class="bg-surface-container p-5 rounded-xl flex items-center justify-between relative overflow-hidden shadow-sm">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-secondary/5 rounded-full blur-xl"></div>
+<div>
+<span class="text-label-md text-on-surface-variant uppercase tracking-wider">Mean Time To Resolve</span>
+<div class="text-headline-lg text-on-surface mt-1 font-headline-lg"><span id="cs-mttr">18.4m</span><span class="text-body-md text-secondary ml-2 font-semibold" id="cs-mttr-trend">-12%</span></div>
+</div>
+<div class="w-12 h-12 rounded-xl bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-2xl">timer</span>
+</div>
+</div>
+<div class="bg-surface-container p-5 rounded-xl flex items-center justify-between relative overflow-hidden shadow-sm">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-tertiary/5 rounded-full blur-xl"></div>
+<div>
+<span class="text-label-md text-on-surface-variant uppercase tracking-wider">Playbooks Automated</span>
+<div class="text-headline-lg text-on-surface mt-1 font-headline-lg">94.2%</div>
+</div>
+<div class="w-12 h-12 rounded-xl bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined text-2xl">bolt</span>
+</div>
+</div>
+<div class="bg-surface-container p-5 rounded-xl flex items-center justify-between relative overflow-hidden shadow-sm">
+<div class="absolute -right-6 -bottom-6 w-24 h-24 bg-error/5 rounded-full blur-xl"></div>
+<div>
+<span class="text-label-md text-on-surface-variant uppercase tracking-wider">Critical Severity</span>
+<div class="text-headline-lg text-on-surface mt-1 font-headline-lg text-error" id="cs-critical-sev">3</div>
+</div>
+<div class="w-12 h-12 rounded-xl bg-error/10 flex items-center justify-center text-error">
+<span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">warning</span>
+</div>
+</div>
+</div>
+<!-- Interactive Workflow Status Pipeline -->
+<div class="bg-surface-container p-6 rounded-xl mb-8 shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<div>
+<h2 class="text-headline-md text-on-surface font-headline-md">Incident Workflow Pipeline</h2>
+<p class="text-body-sm text-on-surface-variant mt-0.5">Global operational state across active telemetry streams</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="px-4 py-2 bg-surface-container-high hover:bg-surface-container-highest text-on-surface rounded-xl text-label-lg transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">filter_list</span> Filter State
+        </button>
+<button class="px-4 py-2 bg-primary-container text-on-primary-container hover:opacity-90 rounded-xl text-label-lg transition-all flex items-center gap-2 shadow-[0_0_15px_rgba(82,141,255,0.3)]">
+<span class="material-symbols-outlined text-sm">add</span> New Incident
+        </button>
+</div>
+</div>
+<!-- Pipeline Stages Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+<!-- Stage 1: OPEN -->
+<div class="bg-surface p-4 rounded-xl flex flex-col gap-3 relative" id="cs-pipeline-open">
+<div class="flex items-center justify-between pb-2 border-b border-outline-variant/10">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-error shadow-[0_0_8px_rgba(255,180,171,0.8)]"></span>
+<span class="text-label-lg text-on-surface font-headline-md tracking-wider">OPEN</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-error/10 text-error text-label-md font-semibold" data-col-count>5</span>
+</div>
+<div class="flex flex-col gap-2.5" data-col-cards>
+<!-- Card mini 1 -->
+<div class="p-3 bg-surface-container-low rounded-xl hover:bg-surface-container transition-all cursor-pointer border border-error/20">
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant mb-1">
+<span class="text-error font-code-mono font-semibold">INC-8921</span>
+<span>12m ago</span>
+</div>
+<p class="text-body-md text-on-surface font-semibold line-clamp-1">Unauthorized RDP Brute-Force Wave</p>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-outline-variant/10 text-body-sm text-on-surface-variant">
+<span>Analyst: Unassigned</span>
+<span class="px-1.5 py-0.5 rounded bg-error/20 text-error text-label-md">Critical</span>
+</div>
+</div>
+<!-- Card mini 2 -->
+<div class="p-3 bg-surface-container-low rounded-xl hover:bg-surface-container transition-all cursor-pointer border border-warning/20">
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant mb-1">
+<span class="text-warning font-code-mono font-semibold">INC-8920</span>
+<span>28m ago</span>
+</div>
+<p class="text-body-md text-on-surface font-semibold line-clamp-1">Suspicious Outbound DNS Tunneling</p>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-outline-variant/10 text-body-sm text-on-surface-variant">
+<span>Analyst: Unassigned</span>
+<span class="px-1.5 py-0.5 rounded bg-amber-500/25 text-amber-300 text-label-md">High</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Stage 2: INVESTIGATING -->
+<div class="bg-surface p-4 rounded-xl flex flex-col gap-3 relative" id="cs-pipeline-investigating">
+<div class="flex items-center justify-between pb-2 border-b border-outline-variant/10">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-primary-container shadow-[0_0_8px_rgba(82,141,255,0.8)]"></span>
+<span class="text-label-lg text-on-surface font-headline-md tracking-wider">INVESTIGATING</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-primary-container/20 text-primary text-label-md font-semibold" data-col-count>8</span>
+</div>
+<div class="flex flex-col gap-2.5" data-col-cards>
+<!-- Card mini 3 -->
+<div class="p-3 bg-surface-container-low rounded-xl hover:bg-surface-container transition-all cursor-pointer border border-primary/20">
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant mb-1">
+<span class="text-primary font-code-mono font-semibold">INC-8915</span>
+<span>1h ago</span>
+</div>
+<p class="text-body-md text-on-surface font-semibold line-clamp-1">Privilege Escalation on Core DC02</p>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-outline-variant/10 text-body-sm text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<img class="w-5 h-5 rounded-full object-cover" data-alt="Analyst profile avatar portrait in cyber security operations center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIuvTb3ezyM9EN7hXAfNkjURWsL4mZ25BqHATmrvRBCNqIHA3a_1RFFvBeF35T25ix9nmvEAtERfdEYdgeDnLxMkBSK-WHSPwJkj2i-YeduwsuOOeDim9eF02EfUwMOTCS5ZOjQKDX_NE6KPx5KOlSC5i7CiQ0L46gO_Q4h2ulhPt6sYjXE_g1A7FB-IKdxunjC_cPw7_XTIUHQhNVEEVv6InHXZjhp04YnEpp9KY"/>
+<span>Sarah Chen</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-error/20 text-error text-label-md">Critical</span>
+</div>
+</div>
+<!-- Card mini 4 -->
+<div class="p-3 bg-surface-container-low rounded-xl hover:bg-surface-container transition-all cursor-pointer">
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant mb-1">
+<span class="text-primary font-code-mono font-semibold">INC-8912</span>
+<span>2h ago</span>
+</div>
+<p class="text-body-md text-on-surface font-semibold line-clamp-1">Malware Beacon Detected: APT29 Sig</p>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-outline-variant/10 text-body-sm text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<img class="w-5 h-5 rounded-full object-cover" data-alt="Male analyst profile portrait working in cybersecurity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBdEjJBQAULiMwjWiaZUFbFCJJTa9jD9o_nF2C1sr3U-rcYY6H93DE8l6wuqAm0_5yUAc5MBGs3_HzcVJmQjjr0bEECZJXPxNyhra-y-nRHzCW1oIRKEZd0i93smKigneFGnqgT-Banq5G1KUCehfKUpP3TwbuXjQqDr81AXbAhEloc5FzySwEgNgTK2hAoSjrB2zK418sYMu277s9E_hd2hC6joWzsxqZ7YFKgqkk"/>
+<span>Alex Mercer</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-amber-500/25 text-amber-300 text-label-md">High</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Stage 3: CONTAINED -->
+<div class="bg-surface p-4 rounded-xl flex flex-col gap-3 relative" id="cs-pipeline-contained">
+<div class="flex items-center justify-between pb-2 border-b border-outline-variant/10">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary shadow-[0_0_8px_rgba(0,217,255,0.8)]"></span>
+<span class="text-label-lg text-on-surface font-headline-md tracking-wider">CONTAINED</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-secondary/10 text-secondary text-label-md font-semibold" data-col-count>6</span>
+</div>
+<div class="flex flex-col gap-2.5" data-col-cards>
+<!-- Card mini 5 -->
+<div class="p-3 bg-surface-container-low rounded-xl hover:bg-surface-container transition-all cursor-pointer">
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant mb-1">
+<span class="text-secondary font-code-mono font-semibold">INC-8908</span>
+<span>4h ago</span>
+</div>
+<p class="text-body-md text-on-surface font-semibold line-clamp-1">Phishing Credential Harvester Sinkhole</p>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-outline-variant/10 text-body-sm text-on-surface-variant">
+<div class="flex items-center gap-1.5">
+<img class="w-5 h-5 rounded-full object-cover" data-alt="Female analyst portrait in tech security role" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCWPGPZua0CMVabzMFQPagmK-S3VUDHvxK-1YhzsPTeS5WLnZPkZrtKF11Ln6sevPTyGvBZ8PUiDyS3SMrDT45OPwjdhH1XIA8L4VUWlar8842RFMUv8RZqjX6vQpyyagq0w2TabAInQQS__mwQMFef5cAA2vT27W2pKo7Ju0EVxGSfjAXKazA7BdWs6Q6AtNmeNS_ngEIc_V9MlAKL20z7LhmpGIGcOuUi1E63MjA"/>
+<span>Elena Rostova</span>
+</div>
+<span class="px-1.5 py-0.5 rounded bg-blue-500/25 text-blue-300 text-label-md">Med</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Stage 4: RESOLVED -->
+<div class="bg-surface p-4 rounded-xl flex flex-col gap-3 relative" id="cs-pipeline-resolved">
+<div class="flex items-center justify-between pb-2 border-b border-outline-variant/10">
+<div class="flex items-center gap-2">
+<span class="w-2.5 h-2.5 rounded-full bg-emerald-400 shadow-[0_0_8px_rgba(52,211,153,0.8)]"></span>
+<span class="text-label-lg text-on-surface font-headline-md tracking-wider">RESOLVED</span>
+</div>
+<span class="px-2 py-0.5 rounded-full bg-emerald-400/10 text-emerald-400 text-label-md font-semibold" data-col-count>45</span>
+</div>
+<div class="flex flex-col gap-2.5" data-col-cards>
+<!-- Card mini 6 -->
+<div class="p-3 bg-surface-container-low rounded-xl hover:bg-surface-container transition-all cursor-pointer opacity-75">
+<div class="flex items-center justify-between text-body-sm text-on-surface-variant mb-1">
+<span class="text-emerald-400 font-code-mono font-semibold">INC-8901</span>
+<span>6h ago</span>
+</div>
+<p class="text-body-md text-on-surface font-semibold line-clamp-1">SQL Injection Attempt on API Gateway</p>
+<div class="flex items-center justify-between mt-2 pt-2 border-t border-outline-variant/10 text-body-sm text-on-surface-variant">
+<span>Marcus Vance</span>
+<span class="px-1.5 py-0.5 rounded bg-emerald-500/20 text-emerald-300 text-label-md">Low</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Main Grid: Incidents Table & Interactive Sidebar (Timeline / Playbook / Notes) -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left 2 Cols: Comprehensive Incidents Table & Cards -->
+<div class="lg:col-span-2 flex flex-col gap-6">
+<div class="bg-surface-container p-6 rounded-xl shadow-sm">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-headline-md text-on-surface font-headline-md">Active Incidents Registry</h3>
+<div class="flex items-center gap-3">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-2 text-on-surface-variant text-sm">search</span>
+<input class="bg-surface text-on-surface pl-9 pr-4 py-1.5 rounded-xl text-body-md border border-outline-variant/20 focus:outline-none focus:border-secondary" placeholder="Filter incidents..." type="text"/>
+</div>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-label-md text-on-surface-variant uppercase tracking-wider border-b border-outline-variant/20">
+<th class="py-3 px-4">Incident ID / Title</th>
+<th class="py-3 px-4">Severity</th>
+<th class="py-3 px-4">Assigned Analyst</th>
+<th class="py-3 px-4">Created Time</th>
+<th class="py-3 px-4">Status</th>
+<th class="py-3 px-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/10 text-body-md" id="cs-incidents-tbody">
+<tr class="hover:bg-surface-container-high/50 transition-colors cursor-pointer group">
+<td class="py-4 px-4">
+<div class="flex flex-col">
+<span class="text-error font-code-mono text-body-sm font-semibold">INC-8921</span>
+<span class="text-on-surface font-semibold group-hover:text-secondary transition-colors">Unauthorized RDP Brute-Force Wave</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<span class="px-2.5 py-1 rounded-full bg-error/15 text-error text-label-md border border-error/30">CRITICAL</span>
+</td>
+<td class="py-4 px-4">
+<span class="text-on-surface-variant italic">Unassigned</span>
+</td>
+<td class="py-4 px-4 text-on-surface-variant font-code-mono text-body-sm">
+                  2025-05-14 14:22
+                </td>
+<td class="py-4 px-4">
+<span class="px-2.5 py-1 rounded-full bg-error/10 text-error text-label-md font-semibold">OPEN</span>
+</td>
+<td class="py-4 px-4 text-right">
+<button class="p-1.5 hover:bg-surface-container-highest rounded-lg text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high/50 transition-colors cursor-pointer group bg-surface-container-high/20">
+<td class="py-4 px-4">
+<div class="flex flex-col">
+<span class="text-primary font-code-mono text-body-sm font-semibold">INC-8915</span>
+<span class="text-on-surface font-semibold group-hover:text-secondary transition-colors">Privilege Escalation on Core DC02</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<span class="px-2.5 py-1 rounded-full bg-error/15 text-error text-label-md border border-error/30">CRITICAL</span>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Sarah Chen security analyst working in operations center" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZIxbt_j5mmIftiQkT1CXQBC3GEvV6Xq4SLX16KlRfWllUmCUh6hIjQP66VscsGLkXv3aR66f1lxXbzUf2uK9yHFhgM_0z-zLFxG68VtUYeFQJXKsmDNOYLhRKAaI6koKE_JXkW4AAnLai4P9AivTUO78KY2-fxCJRZgvBOpz8UpFSXpXIoUo8zQ3arG1Z3n9M-oVRHVc1YwCcbaoMeOy013coC5Wl--KLXzPQdlg"/>
+<span class="text-on-surface">Sarah Chen</span>
+</div>
+</td>
+<td class="py-4 px-4 text-on-surface-variant font-code-mono text-body-sm">
+                  2025-05-14 13:10
+                </td>
+<td class="py-4 px-4">
+<span class="px-2.5 py-1 rounded-full bg-primary-container/20 text-primary text-label-md font-semibold">INVESTIGATING</span>
+</td>
+<td class="py-4 px-4 text-right">
+<button class="p-1.5 hover:bg-surface-container-highest rounded-lg text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high/50 transition-colors cursor-pointer group">
+<td class="py-4 px-4">
+<div class="flex flex-col">
+<span class="text-warning font-code-mono text-body-sm font-semibold">INC-8920</span>
+<span class="text-on-surface font-semibold group-hover:text-secondary transition-colors">Suspicious Outbound DNS Tunneling</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<span class="px-2.5 py-1 rounded-full bg-amber-500/20 text-amber-300 text-label-md border border-amber-500/30">HIGH</span>
+</td>
+<td class="py-4 px-4">
+<span class="text-on-surface-variant italic">Unassigned</span>
+</td>
+<td class="py-4 px-4 text-on-surface-variant font-code-mono text-body-sm">
+                  2025-05-14 14:06
+                </td>
+<td class="py-4 px-4">
+<span class="px-2.5 py-1 rounded-full bg-error/10 text-error text-label-md font-semibold">OPEN</span>
+</td>
+<td class="py-4 px-4 text-right">
+<button class="p-1.5 hover:bg-surface-container-highest rounded-lg text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-high/50 transition-colors cursor-pointer group">
+<td class="py-4 px-4">
+<div class="flex flex-col">
+<span class="text-secondary font-code-mono text-body-sm font-semibold">INC-8908</span>
+<span class="text-on-surface font-semibold group-hover:text-secondary transition-colors">Phishing Credential Harvester Sinkhole</span>
+</div>
+</td>
+<td class="py-4 px-4">
+<span class="px-2.5 py-1 rounded-full bg-blue-500/20 text-blue-300 text-label-md border border-blue-500/30">MEDIUM</span>
+</td>
+<td class="py-4 px-4">
+<div class="flex items-center gap-2">
+<img class="w-6 h-6 rounded-full object-cover" data-alt="Elena Rostova cyber threat analyst portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB9sbzu9XY4b_PDpFZD884VCuhb5__kRH1uq16EL1kC21WiUkvRdVBxAzkTIyPmC3R6yvY1RNe-nkKLP7mYfZFlAzCC9xRlWINpnTnPZ6orupTwbNVAWnupAL5c1eK1S26wCoqUEx_5B2YQuCcfF0mXHcy5_oR97q3-svmmipQzHWdZv95UNcqFnxuvu4hydL_eNTNZQxBHJNNXdIVHUzKFwC2mrCQuSc3ZGMIixGk"/>
+<span class="text-on-surface">Elena Rostova</span>
+</div>
+</td>
+<td class="py-4 px-4 text-on-surface-variant font-code-mono text-body-sm">
+                  2025-05-14 10:15
+                </td>
+<td class="py-4 px-4">
+<span class="px-2.5 py-1 rounded-full bg-secondary/15 text-secondary text-label-md font-semibold">CONTAINED</span>
+</td>
+<td class="py-4 px-4 text-right">
+<button class="p-1.5 hover:bg-surface-container-highest rounded-lg text-on-surface-variant hover:text-on-surface">
+<span class="material-symbols-outlined text-sm">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Incident Focus Card Detail -->
+<div class="bg-surface-container p-6 rounded-xl shadow-sm relative overflow-hidden" id="cs-incident-detail">
+<div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<div class="flex items-start justify-between mb-4">
+<div>
+<div class="flex items-center gap-3 mb-1">
+<span class="text-error font-code-mono text-label-lg font-semibold" id="cs-detail-code">INC-8915</span>
+<span id="cs-detail-sev-badge"><span class="px-2.5 py-0.5 rounded-full bg-error/15 text-error text-label-md border border-error/30 font-semibold">CRITICAL</span></span>
+<span class="text-on-surface-variant text-body-sm">Source: EDR Sensor / Windows-Sysmon</span>
+</div>
+<h3 class="text-headline-md text-on-surface font-headline-md" id="cs-detail-title">Privilege Escalation via Vulnerable Service Binary on DC02</h3>
+</div>
+<button class="px-4 py-2 bg-secondary text-on-secondary hover:opacity-90 rounded-xl text-label-lg font-semibold transition-all shadow-[0_0_15px_rgba(0,217,255,0.3)]">
+            Isolate Host
+          </button>
+</div>
+<p class="text-body-md text-on-surface-variant mb-6" id="cs-detail-description">
+          An anomalous process execution was detected spawning an interactive cmd.exe shell from an unquoted service path vulnerability on domain controller DC02 (`10.100.4.12`). Lateral movement indicators point to credential dumping activity via Mimikatz in memory.
+        </p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 pt-4 border-t border-outline-variant/20">
+<div class="flex flex-col">
+<span class="text-label-md text-on-surface-variant uppercase">Affected Asset</span>
+<span class="text-body-md text-on-surface font-code-mono font-semibold mt-0.5" id="cs-detail-asset">DC02.corp.cybershield.internal</span>
+</div>
+<div class="flex flex-col">
+<span class="text-label-md text-on-surface-variant uppercase">MITRE ATT&amp;CK</span>
+<span class="text-body-md text-secondary font-code-mono font-semibold mt-0.5" id="cs-detail-mitre">T1574.009 - Unquoted Path</span>
+</div>
+<div class="flex flex-col">
+<span class="text-label-md text-on-surface-variant uppercase">Containment Status</span>
+<span class="text-body-md text-amber-300 font-semibold mt-0.5 flex items-center gap-1.5" id="cs-detail-containment">
+<span class="w-2 h-2 rounded-full bg-amber-400 animate-ping"></span> Pending Network Quarantine
+            </span>
+</div>
+</div>
+</div>
+<!-- Right Col: Activity Timeline, Playbooks & Collaboration Sidebar -->
+<div class="flex flex-col gap-6">
+<!-- Playbook Execution Triggers -->
+<div class="bg-surface-container p-6 rounded-xl shadow-sm">
+<h3 class="text-headline-sm text-on-surface font-headline-md mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary">bolt</span> Playbook Triggers
+        </h3>
+<div class="flex flex-col gap-3">
+<div class="p-3.5 bg-surface rounded-xl border border-secondary/20 hover:border-secondary/50 transition-all flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined">lan</span>
+</div>
+<div>
+<h4 class="text-body-md text-on-surface font-semibold">Isolate Host &amp; Flush ARP</h4>
+<p class="text-body-sm text-on-surface-variant">Drops interface connection immediately</p>
+</div>
+</div>
+<button class="px-3 py-1.5 bg-secondary text-on-secondary rounded-lg text-label-md font-semibold opacity-90 group-hover:opacity-100 transition-opacity">
+              Execute
+            </button>
+</div>
+<div class="p-3.5 bg-surface rounded-xl border border-outline-variant/20 hover:border-outline-variant/50 transition-all flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">key_off</span>
+</div>
+<div>
+<h4 class="text-body-md text-on-surface font-semibold">Revoke Active User Tokens</h4>
+<p class="text-body-sm text-on-surface-variant">Force AzureAD / Okta session logout</p>
+</div>
+</div>
+<button class="px-3 py-1.5 bg-surface-container-high text-on-surface rounded-lg text-label-md font-semibold hover:bg-surface-container-highest transition-colors">
+              Execute
+            </button>
+</div>
+<div class="p-3.5 bg-surface rounded-xl border border-outline-variant/20 hover:border-outline-variant/50 transition-all flex items-center justify-between group">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-tertiary/10 flex items-center justify-center text-tertiary">
+<span class="material-symbols-outlined">memory</span>
+</div>
+<div>
+<h4 class="text-body-md text-on-surface font-semibold">Capture RAM Dump</h4>
+<p class="text-body-sm text-on-surface-variant">Initiate remote forensic snapshot</p>
+</div>
+</div>
+<button class="px-3 py-1.5 bg-surface-container-high text-on-surface rounded-lg text-label-md font-semibold hover:bg-surface-container-highest transition-colors">
+              Execute
+            </button>
+</div>
+</div>
+</div>
+<!-- Activity Timeline Sidebar -->
+<div class="bg-surface-container p-6 rounded-xl shadow-sm">
+<h3 class="text-headline-sm text-on-surface font-headline-md mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">schedule</span> Incident Activity Timeline
+        </h3>
+<div class="relative pl-6 space-y-6 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-outline-variant/30" id="cs-detail-timeline">
+<div class="relative">
+<span class="absolute -left-[29px] top-1 w-3.5 h-3.5 rounded-full bg-error border-2 border-surface shadow-[0_0_8px_rgba(255,180,171,0.8)]"></span>
+<div class="text-body-sm text-on-surface-variant font-code-mono mb-0.5">13:10:42 UTC</div>
+<p class="text-body-md text-on-surface font-semibold">EDR Alert Triggered</p>
+<p class="text-body-sm text-on-surface-variant mt-1">Sysmon event ID 1 recorded anomalous process spawning from unquoted path.</p>
+</div>
+<div class="relative">
+<span class="absolute -left-[29px] top-1 w-3.5 h-3.5 rounded-full bg-primary border-2 border-surface"></span>
+<div class="text-body-sm text-on-surface-variant font-code-mono mb-0.5">13:14:00 UTC</div>
+<p class="text-body-md text-on-surface font-semibold">Analyst Assigned</p>
+<p class="text-body-sm text-on-surface-variant mt-1">Sarah Chen claimed INC-8915 for tier-2 forensic review.</p>
+</div>
+<div class="relative">
+<span class="absolute -left-[29px] top-1 w-3.5 h-3.5 rounded-full bg-secondary border-2 border-surface"></span>
+<div class="text-body-sm text-on-surface-variant font-code-mono mb-0.5">13:22:15 UTC</div>
+<p class="text-body-md text-on-surface font-semibold">YARA Rule Match Verified</p>
+<p class="text-body-sm text-on-surface-variant mt-1">Memory signature confirmed Mimikatz payload injected into LSASS.</p>
+</div>
+</div>
+</div>
+<!-- Team Collaboration Notes -->
+<div class="bg-surface-container p-6 rounded-xl shadow-sm flex flex-col">
+<h3 class="text-headline-sm text-on-surface font-headline-md mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary">forum</span> SOC Team Notes
+        </h3>
+<div class="flex flex-col gap-3 mb-4 max-h-60 overflow-y-auto pr-1" id="cs-detail-notes">
+<div class="p-3 bg-surface rounded-xl border border-outline-variant/10">
+<div class="flex items-center justify-between mb-1.5">
+<span class="text-label-md text-primary font-semibold">Sarah Chen</span>
+<span class="text-body-sm text-on-surface-variant font-code-mono">13:25</span>
+</div>
+<p class="text-body-sm text-on-surface">Verified administrative accounts active on DC02. Initiating token revocation now.</p>
+</div>
+<div class="p-3 bg-surface rounded-xl border border-outline-variant/10">
+<div class="flex items-center justify-between mb-1.5">
+<span class="text-label-md text-secondary font-semibold">Alex Mercer</span>
+<span class="text-body-sm text-on-surface-variant font-code-mono">13:31</span>
+</div>
+<p class="text-body-sm text-on-surface">Firewall rules updated to block C2 IP `185.220.101.5`. Good catch team.</p>
+</div>
+</div>
+<!-- Note Input -->
+<div class="flex gap-2">
+<input id="cs-note-input" class="flex-1 bg-surface text-on-surface px-4 py-2 rounded-xl text-body-md border border-outline-variant/20 focus:outline-none focus:border-secondary" placeholder="Add collaboration note..." type="text"/>
+<button onclick="csSendNote()" class="px-4 py-2 bg-primary-container text-on-primary-container rounded-xl font-semibold hover:opacity-90 transition-opacity">
+            Send
+          </button>
+</div>
+</div>
+</div>
+</div>
+</div></main></div><script src="cs-api.js"></script><script src="cs-incidents.js"></script><script id="cs-nav">
+(function(){
+ var b=document.body;
+ var btn=document.createElement('button');btn.className='cs-burger';btn.setAttribute('aria-label','Toggle navigation');
+ btn.innerHTML='<span class="material-symbols-outlined">menu</span>';
+ var sc=document.createElement('div');sc.className='cs-scrim';
+ b.appendChild(btn);b.appendChild(sc);
+ btn.onclick=function(){var o=b.classList.toggle('cs-nav-open');btn.firstChild.textContent=o?'close':'menu'};sc.onclick=function(){b.classList.remove('cs-nav-open');btn.firstChild.textContent='menu'};
+ document.addEventListener('keydown',function(e){if(e.key==='Escape')b.classList.remove('cs-nav-open')});
+ document.querySelectorAll('aside img').forEach(function(i){var f=function(){
+  var s=document.createElement('span');s.className='material-symbols-outlined text-secondary-container';s.style.fontVariationSettings="'FILL' 1";s.textContent='shield';i.replaceWith(s)};
+  i.addEventListener('error',f);if(i.complete&&i.naturalWidth===0)f();});
+})();
+</script></body></html>
