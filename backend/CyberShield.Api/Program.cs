@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-
 // Serve the CyberShield front-end (the "public" folder of the project) from the same origin as the API.
 // Override with Frontend__Path; falls back to ./wwwroot when the folder is not found.
 var probe = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), "..", "..", "public"));
@@ -16,7 +15,7 @@ var config = builder.Configuration;
 
 // ---------- Database (SQL Server) ----------
 builder.Services.AddDbContext<AppDbContext>(o =>
-    o.UseSqlServer(config.GetConnectionString("Default"), sql => sql.EnableRetryOnFailure(3)));
+    o.UseNpgsql(config.GetConnectionString("Default"), sql => sql.EnableRetryOnFailure(3)));
 
 // ---------- JWT authentication ----------
 builder.Services.Configure<JwtOptions>(config.GetSection("Jwt"));
