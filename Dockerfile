@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
 
 COPY backend/CyberShield.Api/CyberShield.Api.csproj ./backend/CyberShield.Api/
@@ -8,7 +8,7 @@ COPY backend/CyberShield.Api/ ./backend/CyberShield.Api/
 WORKDIR /src/backend/CyberShield.Api
 RUN dotnet publish -c Release -o /app
 
-FROM mcr.microsoft.com/dotnet/aspnet:8.0-alpine
+FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /app ./
 COPY public/ ./wwwroot/
@@ -16,7 +16,8 @@ COPY public/ ./wwwroot/
 ENV ASPNETCORE_URLS=http://+:8080
 ENV ASPNETCORE_ENVIRONMENT=Production
 ENV DOTNET_GCConserveMemory=9
-ENV DOTNET_GCHeapHardLimit=314572800
+ENV DOTNET_GCHeapHardLimit=419430400
+ENV DOTNET_ThreadPool_UnfairSemaphoreSpinLimit=0
 ENV Database__AutoMigrate=true
 ENV Database__Seed=true
 

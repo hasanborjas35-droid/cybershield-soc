@@ -75,7 +75,25 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-    if (config.GetValue("Database:AutoMigrate", true)) await db.Database.MigrateAsync();
+    if (config.GetValue("Database:AutoMigrate", true))
+    {
+        // Run migrations with retry to handle cold start memory pressure
+        var retries = 3;
+        for (int i = 0; i < retries; i++)
+        {
+            try
+            {
+                await db.Database.MigrateAsync();
+                break;
+            }
+            catch (Exception ex) when (i < retries - 1)
+            {
+                var log2 = app.Services.GetRequiredService<ILogger<Program>>();
+                log2.LogWarning("Migration attempt {i} failed: {msg}. Retrying...", i + 1, ex.Message);
+                await Task.Delay(3000);
+            }
+        }
+    }
     if (config.GetValue("Database:Seed", true))
         await DbSeeder.SeedAsync(db, config["Database:SeedPassword"] ?? "ChangeMe!123");
 }
