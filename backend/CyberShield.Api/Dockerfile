@@ -1,13 +1,20 @@
 FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
 WORKDIR /src
-COPY CyberShield.Api.csproj ./
-RUN dotnet restore
-COPY . .
-RUN dotnet publish -c Release -o /app --no-restore
+
+# Copy project file and restore
+COPY backend/CyberShield.Api/CyberShield.Api.csproj backend/CyberShield.Api/
+RUN dotnet restore backend/CyberShield.Api/CyberShield.Api.csproj
+
+# Copy everything and publish
+COPY backend/CyberShield.Api/ backend/CyberShield.Api/
+WORKDIR /src/backend/CyberShield.Api
+RUN dotnet publish -c Release -o /app
 
 FROM mcr.microsoft.com/dotnet/aspnet:8.0
 WORKDIR /app
 COPY --from=build /app ./
+# Copy frontend
+COPY public/ ./wwwroot/
 ENV ASPNETCORE_URLS=http://+:8080
 ENV ASPNETCORE_ENVIRONMENT=Production
 EXPOSE 8080
