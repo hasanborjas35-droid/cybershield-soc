@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: cybershield-soc
+    runtime: docker
+    dockerfilePath: ./backend/CyberShield.Api/Dockerfile
+    dockerContext: ./backend/CyberShield.Api
+    envVars:
+      - key: ASPNETCORE_ENVIRONMENT
+        value: Production
