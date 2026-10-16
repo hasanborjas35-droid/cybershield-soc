@@ -1,13 +1,12 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace CyberShield.Api.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialPostgres : Migration
+    public partial class InitialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,11 +15,11 @@ namespace CyberShield.Api.Migrations
                 name: "AppSettings",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Key = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    Value = table.Column<string>(type: "character varying(2000)", maxLength: 2000, nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Key = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,17 +30,17 @@ namespace CyberShield.Api.Migrations
                 name: "Devices",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Name = table.Column<string>(type: "character varying(120)", maxLength: 120, nullable: false),
-                    Segment = table.Column<string>(type: "character varying(160)", maxLength: 160, nullable: false),
-                    IpAddress = table.Column<string>(type: "character varying(45)", maxLength: 45, nullable: false),
-                    OperatingSystem = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
-                    RiskLevel = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    Status = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    AgentVersion = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: false),
-                    LastSeenAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(120)", maxLength: 120, nullable: false),
+                    Segment = table.Column<string>(type: "nvarchar(160)", maxLength: 160, nullable: false),
+                    IpAddress = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: false),
+                    OperatingSystem = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    RiskLevel = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    AgentVersion = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    LastSeenAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -52,19 +51,19 @@ namespace CyberShield.Api.Migrations
                 name: "Threats",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Category = table.Column<string>(type: "character varying(80)", maxLength: 80, nullable: false),
-                    Name = table.Column<string>(type: "character varying(160)", maxLength: 160, nullable: false),
-                    Description = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false),
-                    Severity = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    EventCount = table.Column<int>(type: "integer", nullable: false),
-                    TrendPercent = table.Column<decimal>(type: "numeric(6,1)", precision: 6, scale: 1, nullable: false),
-                    SourceIp = table.Column<string>(type: "character varying(45)", maxLength: 45, nullable: true),
-                    SourceAsn = table.Column<string>(type: "character varying(80)", maxLength: 80, nullable: true),
-                    SourceCountry = table.Column<string>(type: "character varying(60)", maxLength: 60, nullable: true),
-                    Status = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    DetectedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Category = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(160)", maxLength: 160, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false),
+                    Severity = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    EventCount = table.Column<int>(type: "int", nullable: false),
+                    TrendPercent = table.Column<decimal>(type: "decimal(6,1)", precision: 6, scale: 1, nullable: false),
+                    SourceIp = table.Column<string>(type: "nvarchar(45)", maxLength: 45, nullable: true),
+                    SourceAsn = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: true),
+                    SourceCountry = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: true),
+                    Status = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    DetectedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -75,16 +74,16 @@ namespace CyberShield.Api.Migrations
                 name: "Users",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    FullName = table.Column<string>(type: "character varying(120)", maxLength: 120, nullable: false),
-                    Email = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    PasswordHash = table.Column<string>(type: "character varying(300)", maxLength: 300, nullable: false),
-                    Role = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: false),
-                    Status = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    MfaEnabled = table.Column<bool>(type: "boolean", nullable: false),
-                    LastActiveAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    FullName = table.Column<string>(type: "nvarchar(120)", maxLength: 120, nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    PasswordHash = table.Column<string>(type: "nvarchar(300)", maxLength: 300, nullable: false),
+                    Role = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    MfaEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    LastActiveAt = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -95,16 +94,16 @@ namespace CyberShield.Api.Migrations
                 name: "AgentRegistrations",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    AgentId = table.Column<string>(type: "character varying(36)", maxLength: 36, nullable: false),
-                    Hostname = table.Column<string>(type: "character varying(120)", maxLength: 120, nullable: false),
-                    DeviceId = table.Column<int>(type: "integer", nullable: true),
-                    OsVersion = table.Column<string>(type: "character varying(120)", maxLength: 120, nullable: false),
-                    AgentVersion = table.Column<string>(type: "character varying(40)", maxLength: 40, nullable: false),
-                    RegisteredAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    LastHeartbeatAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    IsOnline = table.Column<bool>(type: "boolean", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AgentId = table.Column<string>(type: "nvarchar(36)", maxLength: 36, nullable: false),
+                    Hostname = table.Column<string>(type: "nvarchar(120)", maxLength: 120, nullable: false),
+                    DeviceId = table.Column<int>(type: "int", nullable: true),
+                    OsVersion = table.Column<string>(type: "nvarchar(120)", maxLength: 120, nullable: false),
+                    AgentVersion = table.Column<string>(type: "nvarchar(40)", maxLength: 40, nullable: false),
+                    RegisteredAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    LastHeartbeatAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    IsOnline = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -121,22 +120,22 @@ namespace CyberShield.Api.Migrations
                 name: "Incidents",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Code = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    Title = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    Description = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: false),
-                    Severity = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    Status = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    Source = table.Column<string>(type: "character varying(160)", maxLength: 160, nullable: false),
-                    AffectedAsset = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    AffectedDeviceId = table.Column<int>(type: "integer", nullable: true),
-                    MitreTechnique = table.Column<string>(type: "character varying(120)", maxLength: 120, nullable: true),
-                    ContainmentStatus = table.Column<string>(type: "character varying(120)", maxLength: 120, nullable: true),
-                    AssignedToUserId = table.Column<int>(type: "integer", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    ResolvedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: false),
+                    Severity = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Source = table.Column<string>(type: "nvarchar(160)", maxLength: 160, nullable: false),
+                    AffectedAsset = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    AffectedDeviceId = table.Column<int>(type: "int", nullable: true),
+                    MitreTechnique = table.Column<string>(type: "nvarchar(120)", maxLength: 120, nullable: true),
+                    ContainmentStatus = table.Column<string>(type: "nvarchar(120)", maxLength: 120, nullable: true),
+                    AssignedToUserId = table.Column<int>(type: "int", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    ResolvedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -159,10 +158,10 @@ namespace CyberShield.Api.Migrations
                 name: "UserPermissions",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    UserId = table.Column<int>(type: "integer", nullable: false),
-                    Code = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<int>(type: "int", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -180,15 +179,15 @@ namespace CyberShield.Api.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    AgentRegistrationId = table.Column<int>(type: "integer", nullable: false),
-                    OccurredAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    EventId = table.Column<int>(type: "integer", nullable: false),
-                    Source = table.Column<string>(type: "character varying(80)", maxLength: 80, nullable: false),
-                    Category = table.Column<string>(type: "character varying(60)", maxLength: 60, nullable: false),
-                    Message = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: false),
-                    Severity = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    AlertCreated = table.Column<bool>(type: "boolean", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AgentRegistrationId = table.Column<int>(type: "int", nullable: false),
+                    OccurredAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EventId = table.Column<int>(type: "int", nullable: false),
+                    Source = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    Category = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    Message = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    Severity = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    AlertCreated = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -206,25 +205,25 @@ namespace CyberShield.Api.Migrations
                 columns: table => new
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    AgentRegistrationId = table.Column<int>(type: "integer", nullable: false),
-                    CollectedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    CpuPercent = table.Column<double>(type: "double precision", nullable: false),
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AgentRegistrationId = table.Column<int>(type: "int", nullable: false),
+                    CollectedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CpuPercent = table.Column<double>(type: "float", nullable: false),
                     TotalMemoryBytes = table.Column<long>(type: "bigint", nullable: false),
                     AvailableMemoryBytes = table.Column<long>(type: "bigint", nullable: false),
                     TotalDiskBytes = table.Column<long>(type: "bigint", nullable: false),
                     AvailableDiskBytes = table.Column<long>(type: "bigint", nullable: false),
-                    DefenderEnabled = table.Column<bool>(type: "boolean", nullable: false),
-                    RealTimeProtectionEnabled = table.Column<bool>(type: "boolean", nullable: false),
-                    FirewallEnabled = table.Column<bool>(type: "boolean", nullable: false),
-                    DefenderSignatureDate = table.Column<string>(type: "character varying(30)", maxLength: 30, nullable: true),
-                    FailedLogonCount = table.Column<int>(type: "integer", nullable: false),
-                    SuccessfulLogonCount = table.Column<int>(type: "integer", nullable: false),
-                    AccountLockoutCount = table.Column<int>(type: "integer", nullable: false),
-                    DefenderDetectionCount = table.Column<int>(type: "integer", nullable: false),
-                    NetworkInterfacesJson = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
-                    SecurityEventsJson = table.Column<string>(type: "character varying(4000)", maxLength: 4000, nullable: true),
-                    ErrorsJson = table.Column<string>(type: "character varying(2000)", maxLength: 2000, nullable: true)
+                    DefenderEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    RealTimeProtectionEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    FirewallEnabled = table.Column<bool>(type: "bit", nullable: false),
+                    DefenderSignatureDate = table.Column<string>(type: "nvarchar(30)", maxLength: 30, nullable: true),
+                    FailedLogonCount = table.Column<int>(type: "int", nullable: false),
+                    SuccessfulLogonCount = table.Column<int>(type: "int", nullable: false),
+                    AccountLockoutCount = table.Column<int>(type: "int", nullable: false),
+                    DefenderDetectionCount = table.Column<int>(type: "int", nullable: false),
+                    NetworkInterfacesJson = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: true),
+                    SecurityEventsJson = table.Column<string>(type: "nvarchar(4000)", maxLength: 4000, nullable: true),
+                    ErrorsJson = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -241,21 +240,21 @@ namespace CyberShield.Api.Migrations
                 name: "Alerts",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Code = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    Signature = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    Details = table.Column<string>(type: "character varying(2000)", maxLength: 2000, nullable: false),
-                    Severity = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    Status = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false),
-                    SourceIp = table.Column<string>(type: "character varying(80)", maxLength: 80, nullable: false),
-                    DestinationTarget = table.Column<string>(type: "character varying(160)", maxLength: 160, nullable: false),
-                    DeviceId = table.Column<int>(type: "integer", nullable: true),
-                    ThreatId = table.Column<int>(type: "integer", nullable: true),
-                    IncidentId = table.Column<int>(type: "integer", nullable: true),
-                    AssignedToUserId = table.Column<int>(type: "integer", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: true)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Code = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Signature = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Details = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false),
+                    Severity = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    SourceIp = table.Column<string>(type: "nvarchar(80)", maxLength: 80, nullable: false),
+                    DestinationTarget = table.Column<string>(type: "nvarchar(160)", maxLength: 160, nullable: false),
+                    DeviceId = table.Column<int>(type: "int", nullable: true),
+                    ThreatId = table.Column<int>(type: "int", nullable: true),
+                    IncidentId = table.Column<int>(type: "int", nullable: true),
+                    AssignedToUserId = table.Column<int>(type: "int", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -288,13 +287,13 @@ namespace CyberShield.Api.Migrations
                 name: "IncidentNotes",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    IncidentId = table.Column<int>(type: "integer", nullable: false),
-                    AuthorUserId = table.Column<int>(type: "integer", nullable: true),
-                    AuthorName = table.Column<string>(type: "character varying(120)", maxLength: 120, nullable: false),
-                    Body = table.Column<string>(type: "character varying(2000)", maxLength: 2000, nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IncidentId = table.Column<int>(type: "int", nullable: false),
+                    AuthorUserId = table.Column<int>(type: "int", nullable: true),
+                    AuthorName = table.Column<string>(type: "nvarchar(120)", maxLength: 120, nullable: false),
+                    Body = table.Column<string>(type: "nvarchar(2000)", maxLength: 2000, nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -311,12 +310,12 @@ namespace CyberShield.Api.Migrations
                 name: "IncidentTimeline",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    IncidentId = table.Column<int>(type: "integer", nullable: false),
-                    OccurredAt = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
-                    Title = table.Column<string>(type: "character varying(200)", maxLength: 200, nullable: false),
-                    Description = table.Column<string>(type: "character varying(1000)", maxLength: 1000, nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    IncidentId = table.Column<int>(type: "int", nullable: false),
+                    OccurredAt = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -333,11 +332,11 @@ namespace CyberShield.Api.Migrations
                 name: "AlertIocs",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "integer", nullable: false)
-                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    AlertId = table.Column<int>(type: "integer", nullable: false),
-                    Type = table.Column<string>(type: "character varying(60)", maxLength: 60, nullable: false),
-                    Value = table.Column<string>(type: "character varying(500)", maxLength: 500, nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    AlertId = table.Column<int>(type: "int", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false)
                 },
                 constraints: table =>
                 {

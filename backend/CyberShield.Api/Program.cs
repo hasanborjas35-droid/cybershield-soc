@@ -13,9 +13,21 @@ var frontendPath = Environment.GetEnvironmentVariable("Frontend__Path") ?? (Dire
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions { Args = args, WebRootPath = frontendPath });
 var config = builder.Configuration;
 
-// ---------- Database (SQL Server) ----------
+// ---------- Database — auto-detect provider from connection string ----------
+// SQL Server:  connection string contains "Server=" or "Data Source="
+// PostgreSQL:  connection string contains "Host=" or starts with "postgres"
+var connStr = config.GetConnectionString("Default") ?? "";
+var isSqlServer = connStr.Contains("Server=", StringComparison.OrdinalIgnoreCase)
+               || connStr.Contains("Data Source=", StringComparison.OrdinalIgnoreCase)
+               || connStr.Contains("Trusted_Connection", StringComparison.OrdinalIgnoreCase);
+
 builder.Services.AddDbContext<AppDbContext>(o =>
-    o.UseNpgsql(config.GetConnectionString("Default"), sql => sql.EnableRetryOnFailure(3)));
+{
+    if (isSqlServer)
+        o.UseSqlServer(connStr, sql => sql.EnableRetryOnFailure(3));
+    else
+        o.UseNpgsql(connStr, pg => pg.EnableRetryOnFailure(3));
+});
 
 // ---------- JWT authentication ----------
 builder.Services.Configure<JwtOptions>(config.GetSection("Jwt"));
